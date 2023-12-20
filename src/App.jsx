@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import Navbar from './Components/nav/Navbar.jsx';
+import Navbar from './components/nav/Navbar.jsx';
 import Home from './pages/Home';
 import MyNetwork from './pages/MyNetwork';
 import Jobs from './pages/Jobs';
 import Messaging from './pages/Messaging';
 import Notifications from './pages/Notifications';
-import PostModal from './Components/Modal/PostModal';
+import PostModal from './components/Modal/PostModal';
 import Login from './pages/Login';
 import { useSelector,useDispatch } from 'react-redux';
 import { getUser } from './context/userSlice';
