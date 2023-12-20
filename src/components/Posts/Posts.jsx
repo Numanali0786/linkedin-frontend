@@ -96,7 +96,7 @@ const Posts = () => {
 
                         {/* comments */}
 
-                        {post._id === showCommentsId && <Comments postId={post._id} post={post} />}
+                        {/* {post._id === showCommentsId && <Comments postId={post._id} post={post} />} */}
                     </div>
                 ))}
             </div>

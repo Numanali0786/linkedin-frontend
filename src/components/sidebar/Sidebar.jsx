@@ -17,14 +17,14 @@ const Sidebar = () => {
     },[])
     console.log(profile?.position)
     const editProfile = ()=>{
-        nav('profile')
+        // nav('profile')
         
     }
     const deleteProf = ()=>{
 
-        if(!profile.length==0){
-        dispatch(deleteProfile(profile[0]._id))
-        }
+        // if(!profile.length==0){
+        // dispatch(deleteProfile(profile[0]._id))
+        // }
         
     }
     
