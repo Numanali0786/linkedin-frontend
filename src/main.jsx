@@ -8,11 +8,10 @@ import { Provider } from 'react-redux'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-<GoogleOAuthProvider clientId="816891369370-1jl9868t0hulliqqan35eqgreac5e6ug.apps.googleusercontent.com">
-{/* <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}> */}
-<Provider store={store}>
-    <App />
-  </Provider>
-  </GoogleOAuthProvider>;
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </GoogleOAuthProvider>
   </React.StrictMode>,
 )
