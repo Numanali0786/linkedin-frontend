@@ -12,6 +12,7 @@ import Aside from '../components/aside/Aside.jsx';
 const Home = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.userSlice)
+  const { profile } = useSelector((state) => state.profileSlice)
 
   return (
     <div className="home__container">
@@ -20,7 +21,9 @@ const Home = () => {
       <section className='home__mid__section'>
         <div className='home__mid__top'>
           <div className="home__mid__top__head">
-            <img src={user.picture} alt="" />
+            <img src={profile?.[0]?.selectedFile || user.picture} alt="" />.
+            {/* <img src={(user?.authorEmail==profile?.[0]?.authorEmail &&  profile?.[0]?.selectedFile) || user?.picture} alt="" /> */}
+
             <input type="text" placeholder='Start a post' onClick={() => dispatch(modalOn())} />
           </div>
           <ul className="home__mid__top__links">

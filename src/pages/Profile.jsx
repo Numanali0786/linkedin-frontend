@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './Profile.scss';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
-import { createProfile,updateProfile } from '../context/profileSlice';
+import { createProfile,deleteProfile,updateProfile } from '../context/profileSlice';
 const Profile = () => {
+    const { user } = useSelector((state) => state.userSlice)
     const [data, setData] = useState({
-        name: "", selectedFile: '', position: '',
+        name: "", selectedFile: '', position: '',authorEmail:user.email,
     });
     const { profile } = useSelector((state) => state.profileSlice)
     console.log(profile)
@@ -19,9 +20,11 @@ const Profile = () => {
             dispatch(createProfile(data))
         }
         else{
-            console.log('update')
-            console.log(data)
-            dispatch(updateProfile(profile[0]._id,data))
+            dispatch(deleteProfile(profile[0]._id))
+            dispatch(createProfile(data))
+            // console.log('update')
+            // console.log(data)
+            // dispatch(updateProfile(profile[0]._id,data))
         }
 
 

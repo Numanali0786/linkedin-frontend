@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { fetchApi, postApi,patchApi } from '../api'
+import { fetchApi, postApi,patchApi, deleteApi } from '../api'
 
 export const fetchProfile = createAsyncThunk("fetchProfile", async () => {
   const { data } = await fetchApi('/api/profile');
@@ -16,8 +16,9 @@ export const createProfile = createAsyncThunk("createProfile", async (newProfile
   const { data } = await postApi('/api/profile', newProfile);
   return data
 });
+
 export const deleteProfile = createAsyncThunk("deleteProfile", async (id) => {
-  console.log(id,newProfile)
+  console.log(id,'hhh0')
   const { data } = await deleteApi(`/api/profile/${id}`);
   return data
 });
@@ -38,7 +39,7 @@ export const profileSlice = createSlice({
     })
     builder.addCase(fetchProfile.fulfilled, (state, action) => {
       state.isLoading = false;
-      // console.log(action.payload)
+      console.log(action.payload)
       state.profile = action.payload;
     })
     builder.addCase(fetchProfile.rejected, (state, action) => {
@@ -67,13 +68,16 @@ export const profileSlice = createSlice({
     })
     ////////
     builder.addCase(deleteProfile.pending, (state, action) => {
+      console.log('hii')
       state.isLoading = true;
     })
     builder.addCase(deleteProfile.fulfilled, (state, action) => {
+      console.log(action.payload)
       state.isLoading = false;
       state.profile = [];
     })
     builder.addCase(deleteProfile.rejected, (state, action) => {
+      console.log('hii')
       state.isError = true;
     })
   }

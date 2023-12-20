@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import Navbar from './Components/nav/Navbar';
+import Navbar from './Components/nav/Navbar.jsx';
 import Home from './pages/Home';
 import MyNetwork from './pages/MyNetwork';
 import Jobs from './pages/Jobs';

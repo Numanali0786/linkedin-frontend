@@ -21,6 +21,8 @@ const Posts = () => {
 
     const [showCommentsId, setShowCommentsId] = useState(null)
     const { posts, isLoading } = useSelector((state) => state.postSlice)
+    const { profile } = useSelector((state) => state.profileSlice)
+    const { user } = useSelector((state) => state.userSlice)
 
     const dispatch = useDispatch()
     useEffect(() => {
@@ -38,7 +40,7 @@ const Posts = () => {
                     <div className="post" key={post._id}>
                         <div className="post__top">
                             <div className="left">
-                                <img src={post?.profile} alt="" />
+                                <img src={(post?.authorEmail===profile?.[0]?.authorEmail &&  profile?.[0]?.selectedFile) || post?.profile} alt="" />
 
                             </div>
                             <div className="detail">
@@ -94,7 +96,7 @@ const Posts = () => {
 
                         {/* comments */}
 
-                        {post._id === showCommentsId && <Comments postId={post._id} />}
+                        {post._id === showCommentsId && <Comments postId={post._id} post={post} />}
                     </div>
                 ))}
             </div>
