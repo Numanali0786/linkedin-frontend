@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './comments.scss';
+import './Comments.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComment, fetchAllComments } from '../../context/commentSlice';
 
