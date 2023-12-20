@@ -1,0 +1,49 @@
+.right {
+    font-size: 16px;
+    .top{
+        background-color: rgb(255, 255, 255);
+        padding: 1rem;
+        border-radius: 7px;
+        border: 1px solid rgb(209, 200, 200);
+
+        li{
+            margin-top: 8px;
+            p{
+                font-size: 12px;
+            }
+        }
+    }
+    .down{
+        background-color: rgb(255, 255, 255);
+        padding: 1rem;
+        border-radius: 7px;
+        border: 1px solid rgb(209, 200, 200);
+        margin-top: 1rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: sticky;
+        top: 5rem;
+
+        img{
+            display: block;
+            width: 50%;
+            margin: 1rem 0;
+        }
+        button{
+            display: block;
+            margin: auto;
+            background: transparent;
+            border: 1px solid blue;
+            padding: 9px 1rem;
+            margin-top: 8px;
+            cursor: pointer;
+            color: blue;
+            border-radius: 8px;
+            font-weight: bold;
+
+            
+        }
+    }
+}

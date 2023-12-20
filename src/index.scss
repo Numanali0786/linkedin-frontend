@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@700&family=Playpen+Sans&family=Poppins&family=Roboto:wght@300&family=Satisfy&display=swap');
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  letter-spacing: 1px;
+
+
+  font-family: 'Edu TAS Beginner', cursive;
+  font-family: 'Playpen Sans', cursive;
+  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Satisfy', cursive;
+
+}
+
+html,
+body {
+  width: 100%;
+  background-color: #f4f2ee;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.icon__button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  box-sizing: content-box;
+  transition: .3s linear all;
+  border-radius: 50%;
+  &:hover{
+    background-color: rgb(233, 233, 233) !important;
+  }
+  
+
+}
+
+.loading{
+  text-align: center;
+}
