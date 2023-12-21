@@ -1,25 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { fetchApi, postApi,patchApi, deleteApi } from '../api'
 
-export const fetchProfile = createAsyncThunk("fetchProfile", async () => {
-  const { data } = await fetchApi('/api/profile');
+export const fetchProfile = createAsyncThunk("fetchProfile", async (authorSub) => {
+  const { data } = await fetchApi(`/api/profile/${authorSub}`);
   return data
 });
-export const updateProfile = createAsyncThunk("updateProfile", async (id,newProfile) => {
-  console.log(newProfile)
-  const { data } = await patchApi(`/api/profile/${id}`,newProfile);
+export const updateProfile = createAsyncThunk("updateProfile", async (updateArgs) => {
+  console.log(updateArgs.authorSub,updateArgs.data)
+  const { data } = await patchApi(`/api/profile/${updateArgs.authorSub}`,updateArgs.data);
   console.log(data)
   return data
 });
 
 export const createProfile = createAsyncThunk("createProfile", async (newProfile) => {
+  console.log(newProfile)
   const { data } = await postApi('/api/profile', newProfile);
   return data
 });
 
-export const deleteProfile = createAsyncThunk("deleteProfile", async (id) => {
-  console.log(id,'hhh0')
-  const { data } = await deleteApi(`/api/profile/${id}`);
+export const deleteProfile = createAsyncThunk("deleteProfile", async (authorSub) => {
+  const { data } = await deleteApi(`/api/profile/${authorSub}`);
   return data
 });
 
@@ -39,7 +39,7 @@ export const profileSlice = createSlice({
     })
     builder.addCase(fetchProfile.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log(action.payload)
+      // console.log(action.payload)
       state.profile = action.payload;
     })
     builder.addCase(fetchProfile.rejected, (state, action) => {
@@ -50,7 +50,7 @@ export const profileSlice = createSlice({
     })
     builder.addCase(createProfile.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.profile = [action.payload,...state.profile];
+      state.profile = [action.payload];
     })
     builder.addCase(createProfile.rejected, (state, action) => {
       state.isError = true;

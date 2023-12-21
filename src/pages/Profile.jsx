@@ -6,25 +6,25 @@ import { createProfile,deleteProfile,updateProfile } from '../context/profileSli
 const Profile = () => {
     const { user } = useSelector((state) => state.userSlice)
     const [data, setData] = useState({
-        name: "", selectedFile: '', position: '',authorEmail:user.email,
+        name: "", selectedFile: '', position: '',authorSub:user.sub,
     });
     const { profile } = useSelector((state) => state.profileSlice)
-    console.log(profile)
+    // console.log(profile)
 
     const dispatch = useDispatch()
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        if(profile.length===0){
+        if(profile===null){
             console.log('create')
             dispatch(createProfile(data))
         }
         else{
-            dispatch(deleteProfile(profile[0]._id))
-            dispatch(createProfile(data))
-            // console.log('update')
-            // console.log(data)
-            // dispatch(updateProfile(profile[0]._id,data))
+            // dispatch(deleteProfile(profile.authorSub))
+            // dispatch(createProfile(data))
+            console.log('update')
+            console.log(data)
+            dispatch(updateProfile({authorSub:profile.authorSub,data}))
         }
 
 

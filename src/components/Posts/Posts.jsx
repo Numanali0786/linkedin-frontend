@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Posts.scss';
-// import { posts } from './Posts';
 import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlineLike } from 'react-icons/ai';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -40,7 +39,7 @@ const Posts = () => {
                     <div className="post" key={post._id}>
                         <div className="post__top">
                             <div className="left">
-                                <img src={(post?.authorEmail===profile?.[0]?.authorEmail &&  profile?.[0]?.selectedFile) || post?.profile} alt="" />
+                                <img src={post?.profile} alt="" />
 
                             </div>
                             <div className="detail">
@@ -96,7 +95,7 @@ const Posts = () => {
 
                         {/* comments */}
 
-                        {/* {post._id === showCommentsId && <Comments postId={post._id} post={post} />} */}
+                        {post._id === showCommentsId && <Comments postId={post._id} post={post} />}
                     </div>
                 ))}
             </div>

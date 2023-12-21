@@ -21,8 +21,8 @@ const Home = () => {
       <section className='home__mid__section'>
         <div className='home__mid__top'>
           <div className="home__mid__top__head">
-            <img src={profile?.[0]?.selectedFile || user.picture} alt="" />.
-            {/* <img src={(user?.authorEmail==profile?.[0]?.authorEmail &&  profile?.[0]?.selectedFile) || user?.picture} alt="" /> */}
+            {/* <img src={profile?.[0]?.selectedFile || user.picture} alt="" />. */}
+            <img src={( profile?.selectedFile) || user?.picture} alt="" />
 
             <input type="text" placeholder='Start a post' onClick={() => dispatch(modalOn())} />
           </div>

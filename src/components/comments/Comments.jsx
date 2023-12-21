@@ -9,7 +9,7 @@ function Comments({ postId,post }) {
     const { user } = useSelector((state) => state.userSlice)
     const { posts, isLoading } = useSelector((state) => state.postSlice)
     const { profile } = useSelector((state) => state.profileSlice)
-    const [commentData, setCommentData] = useState({ commentText: '', authorEmail: user.email, postId: postId, author: user.name, profile: user.picture })
+    const [commentData, setCommentData] = useState({ commentText: '', authorSub: user.sub, postId: postId, author: user.name, profile: profile?.selectedFile || user.picture })
     const { comments } = useSelector((state) => state.commentSlice)
 
     const handleSubmit = (e) => {
@@ -28,7 +28,7 @@ function Comments({ postId,post }) {
             <h1>comments</h1>
             <div className="comment__head">
                 {/* <img src={user.picture} alt="" /> */}
-                <img src={( profile?.[0]?.selectedFile) || user?.profile} alt="" />
+                <img src={( profile?.selectedFile) || user?.picture} alt="" />
                 <textarea type="text" placeholder='Add a comment...' value={commentData.commentText} onChange={(e) => setCommentData({ ...commentData, commentText: e.target.value })} />
                 <br />
             </div>
@@ -39,7 +39,7 @@ function Comments({ postId,post }) {
                     return <div key={comment._id} className="comment">
                         <div className="left">
                             {/* <img src={comment?.profile} alt="" /> */}
-                            <img src={(comment?.authorEmail===profile?.[0]?.authorEmail &&  profile?.[0]?.selectedFile) || comment?.profile} alt="" />
+                            <img src={comment?.profile} alt="" />
                         </div>
                         <div className="right">
                             <div className="head">

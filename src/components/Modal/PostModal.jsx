@@ -15,9 +15,10 @@ import { createPost } from '../../context/postSlice';
 
 
 const PostModal = () => {
+    const { profile } = useSelector((state) => state.profileSlice)
     const { user } = useSelector((state) => state.userSlice)
 
-    const [postData, setPostData] = useState({ postText: '', selectedFile: '',authorEmail:user.email,author:user.name,profile:user.picture })
+    const [postData, setPostData] = useState({ postText: '', selectedFile: '',authorSub:user.sub,author:user.name,profile: profile?.selectedFile || user.picture })
     const dispatch = useDispatch()
 
     const handleSubmit = async (e) => {
