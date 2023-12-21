@@ -14,3 +14,6 @@ export const fetchApi = (url)=> axios.get(`https://linkedin-clone-back.onrender.
 export const postApi = (url,data)=> axios.post(`https://linkedin-clone-back.onrender.com${url}`,data)
 export const patchApi = (url,data)=> axios.patch(`https://linkedin-clone-back.onrender.com${url}`,data)
 export const deleteApi = (url)=> axios.delete(`https://linkedin-clone-back.onrender.com${url}`)
+
+
+// hii
