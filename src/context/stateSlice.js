@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 
-const initialState={
-  modal: false,
+const initialState = {
+  postModal: false,
+  profileModal: false,
 }
 
 export const stateSlice = createSlice({
@@ -12,18 +13,27 @@ export const stateSlice = createSlice({
   reducers: {
 
 
-    modalOff: (state) => {
-      state.modal = false
+    postModalOff: (state) => {
+      state.postModal = false
     },
-    modalOn: (state) => {
-      state.modal = true
+    postModalOn: (state) => {
+      state.postModal = true
+    },
+    profileModalOff: (state) => {
+      state.profileModal = false
+    },
+    profileModalOn: (state) => {
+      state.profileModal = true
     },
 
- 
+
   },
 })
 
 
-export const { modalOff,modalOn} =stateSlice.actions
+export const { postModalOff,
+  postModalOn,
+  profileModalOff,
+  profileModalOn } = stateSlice.actions
 
 export default stateSlice.reducer

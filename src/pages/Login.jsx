@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import { jwtDecode } from "jwt-decode";
 import { login } from '../context/userSlice';
+import './Login.scss'
 
 const Login = () => {
     const nav = useNavigate()
@@ -11,7 +12,9 @@ const Login = () => {
     const {user} = useSelector((state)=> state.userSlice)
     // console.log(user)
   return (
-
+    <div className="login">
+      <h1>Signin, and lets go.</h1>
+      <br />
     <GoogleLogin
       onSuccess={credentialResponse => {
         let jwtUser = jwtDecode(credentialResponse.credential)
@@ -23,6 +26,7 @@ const Login = () => {
         console.log('Login Failed');
       }}
     />
+        </div>
   )
 }
 

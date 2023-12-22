@@ -11,11 +11,12 @@ import Login from './pages/Login';
 import { useSelector,useDispatch } from 'react-redux';
 import { getUser } from './context/userSlice';
 import Profile from './pages/Profile';
+import ProfileModal from './components/Modal/ProfileModal.jsx';
 
 const App = () => {
   const dispatch = useDispatch()
   const {user} = useSelector((state)=> state.userSlice)
-  const {modal} = useSelector((state)=> state.stateSlice)
+  const {postModal,profileModal} = useSelector((state)=> state.stateSlice)
   
   useEffect(()=>{
     dispatch(getUser())
@@ -23,7 +24,8 @@ const App = () => {
   return (
     <BrowserRouter>
     <Navbar/>
-    {modal &&<PostModal/>}
+    {postModal &&<PostModal/>}
+    {profileModal &&<ProfileModal/>}
     <Routes>
       <Route path='/' Component={user ? Home:Login} />
       <Route path='/mynetwork' Component={MyNetwork} />

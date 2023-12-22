@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProfile, fetchProfile } from '../../context/profileSlice';
 import { MdDelete } from "react-icons/md";
+import { profileModalOn } from '../../context/stateSlice';
 
 const Sidebar = () => {
     const nav =  useNavigate()
@@ -19,7 +20,7 @@ const Sidebar = () => {
     },[])
     // console.log(profile?.position)
     const editProfile = ()=>{
-        nav('profile')
+        dispatch(profileModalOn())
         
     }
     const deleteProf = ()=>{

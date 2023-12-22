@@ -44,6 +44,7 @@ const Posts = () => {
                             </div>
                             <div className="detail">
                                 <p>{post?.author}</p>
+                                <span>{post?.position}</span>
                                 <TimeAgo
                                 className='time'
                                     datetime={post?.createdAt}

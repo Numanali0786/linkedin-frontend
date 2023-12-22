@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import './PostModal.scss';
 import FileBase from 'react-file-base64';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalOff } from '../../context/stateSlice';
-import { postApi } from '../../api';
+import { postModalOff } from '../../context/stateSlice';
 import { IoMdClose } from "react-icons/io";
 import { FaCaretDown } from "react-icons/fa";
 import { BsEmojiSmile } from "react-icons/bs";
@@ -12,19 +9,20 @@ import { GoFileMedia } from "react-icons/go";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { createPost } from '../../context/postSlice';
+import './PostModal.scss'
 
 
 const PostModal = () => {
     const { profile } = useSelector((state) => state.profileSlice)
     const { user } = useSelector((state) => state.userSlice)
 
-    const [postData, setPostData] = useState({ postText: '', selectedFile: '',authorSub:user.sub,author:user.name,profile: profile?.selectedFile || user.picture })
+    const [postData, setPostData] = useState({ postText: '', selectedFile: '',authorSub:user.sub,author:user.name,profile: profile?.selectedFile || user.picture,position:profile?.position })
     const dispatch = useDispatch()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(postData)
-        dispatch(modalOff())
+        dispatch(postModalOff())
         dispatch(createPost(postData))
     }
     return (
@@ -61,7 +59,7 @@ const PostModal = () => {
 
                         </div>
 
-                        <button className='close icon__button' onClick={() => dispatch(modalOff())}><IoMdClose /></button>
+                        <button className='close icon__button' onClick={() => dispatch(postModalOff())}><IoMdClose /></button>
                         <button disabled={!postData.postText} className={`${!postData.postText==""?"post__btn":"disable__btn"}`}  onClick={handleSubmit} >Post</button>
                     </form>
 

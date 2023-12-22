@@ -81,6 +81,7 @@
             .home__mid__top__links{
                 display: flex;
                 align-items:center;
+                flex-wrap: wrap;
                 justify-content: space-between;
                 padding: 4px  2.5rem;
 
@@ -106,7 +107,7 @@
                         
                     }
                     svg{
-                        font-size: 1.2rem;
+                        font-size: 1.2rem !important;
                     }
                     &:hover{
                         background-color: #ebebeb;
