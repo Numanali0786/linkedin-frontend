@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import './ProfileModal.scss';
 import FileBase from 'react-file-base64';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { profileModalOff } from '../../context/stateSlice';
-import { postApi } from '../../api';
 import { IoMdClose } from "react-icons/io";
-import { FaCaretDown } from "react-icons/fa";
-import { BsEmojiSmile } from "react-icons/bs";
-import { GoFileMedia } from "react-icons/go";
-import { FaRegCalendarDays } from "react-icons/fa6";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import { createPost } from '../../context/postSlice';
-import { createProfile,deleteProfile,updateProfile } from '../../context/profileSlice';
+import { createProfile,deleteProfile,updateProfile,fetchProfile } from '../../context/profileSlice';
+import {useNavigate} from 'react-router-dom'
 
 
 const ProfileModal = () => {
     const { profile } = useSelector((state) => state.profileSlice)
     const { user } = useSelector((state) => state.userSlice)
+    const nav = useNavigate()
 
     const [data, setData] = useState({
         name: "", selectedFile: '', position: '', authorSub: user.sub,
@@ -32,12 +26,13 @@ const ProfileModal = () => {
             dispatch(createProfile(data))
         }
         else {
-            // dispatch(deleteProfile(profile.authorSub))
-            // dispatch(createProfile(data))
             console.log('update')
             console.log(data)
             dispatch(updateProfile({ authorSub: profile.authorSub, data }))
+
         }
+        dispatch(profileModalOff())
+        nav('/')
 
 
 
@@ -47,11 +42,23 @@ const ProfileModal = () => {
         <div className='profileModal__div'>
             <section className='modal__center'>
                 <div className="modal__content">
+                    <h2
+                    >Edit intro</h2>
+                    <br />
+                    <hr /><br />
+                    <p>* Indicates required</p>
+                    <br />
                     <form action="">
-                        <input type="text" placeholder='name' value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
-                        <div className="profileImg">
+                        <label htmlFor="name">Name*</label>
+                        <br />
+                        <input type="text" id='name' placeholder='name' value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
+                        <br />
 
+                        <label htmlFor='pic'>Profile Pic*</label>
+                        <br />
+                        <div className="profileImg" id="pic">
                             <FileBase
+                            
                                 type="file"
                                 multiple={false}
                                 onDone={({ base64 }) =>
@@ -59,9 +66,11 @@ const ProfileModal = () => {
                                 }
                             />
                         </div>
-
+                        
+                        <label htmlFor="position">Posiion*</label>
+                        <br />
                         <input type="text" placeholder='position' value={data.position} onChange={(e) => setData({ ...data, position: e.target.value })} />
-                        <button className='close icon__button' onClick={() => dispatch(profileModalOff())}><IoMdClose /></button>
+                        <button className='close icon__button' onClick={() => dispatch(profileModalOff())}><IoMdClose size={22}/></button>
                         <button className="post__btn" onClick={handleSubmit} >submit</button>
                     </form>
 

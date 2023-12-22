@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Home.scss';
 import { GoFileMedia } from "react-icons/go";
 import { FaCalendarDays } from "react-icons/fa6";
@@ -8,11 +8,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postModalOn } from '../context/stateSlice.js';
 import Sidebar from '../components/sidebar/Sidebar.jsx';
 import Aside from '../components/aside/Aside.jsx';
+import { fetchProfile } from '../context/profileSlice.js';
 
 const Home = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.userSlice)
   const { profile } = useSelector((state) => state.profileSlice)
+
 
   return (
     <div className="home__container">

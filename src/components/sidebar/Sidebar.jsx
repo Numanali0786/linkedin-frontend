@@ -17,7 +17,7 @@ const Sidebar = () => {
     useEffect(()=>{
         dispatch(fetchProfile(user.sub))
         
-    },[])
+    },[profile])
     // console.log(profile?.position)
     const editProfile = ()=>{
         dispatch(profileModalOn())
