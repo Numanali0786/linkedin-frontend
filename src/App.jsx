@@ -17,15 +17,17 @@ const App = () => {
   const dispatch = useDispatch()
   const {user} = useSelector((state)=> state.userSlice)
   const {postModal,profileModal} = useSelector((state)=> state.stateSlice)
+  console.log('in app')
   
   useEffect(()=>{
     dispatch(getUser())
+    
   },[])
   return (
     <BrowserRouter>
     <Navbar/>
-    {postModal &&<PostModal/>}
-    {profileModal &&<ProfileModal/>}
+    {postModal && user && <PostModal/>}
+    {profileModal && user && <ProfileModal/>}
     <Routes>
       <Route path='/' Component={user ? Home:Login} />
       <Route path='/mynetwork' Component={MyNetwork} />

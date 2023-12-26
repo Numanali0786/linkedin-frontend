@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import './Profile.scss';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
-import { createProfile,deleteProfile,updateProfile } from '../context/profileSlice';
+import { createProfile,updateProfile } from '../context/profileSlice';
 const Profile = () => {
     const { user } = useSelector((state) => state.userSlice)
     const [data, setData] = useState({
         name: "", selectedFile: '', position: '',authorSub:user.sub,
     });
-    const { profile } = useSelector((state) => state.profileSlice)
-    // console.log(profile)
+
 
     const dispatch = useDispatch()
     const handleSubmit = (e) => {

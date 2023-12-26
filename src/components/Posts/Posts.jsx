@@ -20,12 +20,13 @@ const Posts = () => {
 
     const [showCommentsId, setShowCommentsId] = useState(null)
     const { posts, isLoading } = useSelector((state) => state.postSlice)
-    const { profile } = useSelector((state) => state.profileSlice)
     const { user } = useSelector((state) => state.userSlice)
+    const {profiles}  = useSelector((state)=> state.profileSlice)
+    const profile = profiles.find((profile)=> profile?.authorSub === user?.sub)
 
+    console.log(posts)
     const dispatch = useDispatch()
     useEffect(() => {
-
         dispatch(fetchAllPosts())
     }, [])
     return (<>
@@ -34,17 +35,24 @@ const Posts = () => {
             <div className="lds-facebook"><div></div><div></div><div></div></div>
         ) : (
             <div className='posts__div'>
+                {/* {posts.map((post)=>{
+                    const {postText} = post
+                    return(
+                        <div className="">{postText}</div>
+                    )
+                })} */}
 
                 {posts.map((post) => (
+                    // const {}
                     <div className="post" key={post._id}>
                         <div className="post__top">
                             <div className="left">
-                                <img src={post?.profile} alt="" />
+                                <img src={post?.author?.selectedFile} alt="" />
 
                             </div>
                             <div className="detail">
-                                <p>{post?.author}</p>
-                                <span>{post?.position}</span>
+                                <p>{post?.author?.name}</p>
+                                <span>{post?.author?.position}</span>
                                 <TimeAgo
                                 className='time'
                                     datetime={post?.createdAt}
@@ -53,7 +61,7 @@ const Posts = () => {
 
                             </div>
                             <BsThreeDots size={23} />
-                            {/* {moment(post?.createdAt).fromNow()} */}
+                           
 
                         </div>
 

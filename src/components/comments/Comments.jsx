@@ -8,8 +8,9 @@ function Comments({ postId,post }) {
     const dispatch = useDispatch()
     const { user } = useSelector((state) => state.userSlice)
     const { posts, isLoading } = useSelector((state) => state.postSlice)
-    const { profile } = useSelector((state) => state.profileSlice)
-    const [commentData, setCommentData] = useState({ commentText: '', authorSub: user.sub, postId: postId, author: user.name, profile: profile?.selectedFile || user.picture })
+    const {profiles}  = useSelector((state)=> state.profileSlice)
+    const profile = profiles.find((profile)=> profile?.authorSub === user?.sub)
+    const [commentData, setCommentData] = useState({authorPost:postId,author:profile?._id})
     const { comments } = useSelector((state) => state.commentSlice)
 
     const handleSubmit = (e) => {
@@ -22,40 +23,43 @@ function Comments({ postId,post }) {
 
     }, [])
 
-    const selectedComments = comments.filter((comment) => comment.postId === postId)
+
+    const selectedComments = comments.filter((comment) => comment.authorPost._id === postId)
+    console.log(comments)
+    console.log(selectedComments)
     return (
         <section className='comment__div'>
-            <h1>comments</h1>
-            <div className="comment__head">
-                {/* <img src={user.picture} alt="" /> */}
-                <img src={( profile?.selectedFile) || user?.picture} alt="" />
-                <textarea type="text" placeholder='Add a comment...' value={commentData.commentText} onChange={(e) => setCommentData({ ...commentData, commentText: e.target.value })} />
-                <br />
-            </div>
-            {commentData.commentText && <button className='comment__post__btn' onClick={handleSubmit}>Post</button>}
-            <div className="comments">
+        <h1>comments</h1>
+        <div className="comment__head">
+            {/* <img src={user.picture} alt="" /> */}
+            <img src={profile?.selectedFile} alt="" />
+            <textarea type="text" placeholder='Add a comment...' value={commentData.commentText} onChange={(e) => setCommentData({ ...commentData, commentText: e.target.value })} />
+            <br />
+        </div>
+        {commentData.commentText && <button className='comment__post__btn' onClick={handleSubmit}>Post</button>}
+        <div className="comments">
 
-                {selectedComments.map((comment) => {
-                    return <div key={comment._id} className="comment">
-                        <div className="left">
-                            {/* <img src={comment?.profile} alt="" /> */}
-                            <img src={comment?.profile} alt="" />
+            {selectedComments.map((comment) => {
+                return <div key={comment._id} className="comment">
+                    <div className="left">
+                        {/* <img src={comment?.profile} alt="" /> */}
+                        <img src={comment?.author?.selectedFile} alt="" />
+                    </div>
+                    <div className="right">
+                        <div className="head">
+                            <span className='author'>{comment?.author.name}</span>
                         </div>
-                        <div className="right">
-                            <div className="head">
-                                <span className='author'>{comment?.author}</span>
-                            </div>
-                            <div className="spec">developer</div>
-                            <pre>{comment.commentText}</pre>
-                            <div className="btns">
-                                <button>like</button>
-                                <button>reply</button>
-                            </div>
+                        <div className="spec">developer</div>
+                        <pre>{comment.commentText}</pre>
+                        <div className="btns">
+                            <button>like</button>
+                            <button>reply</button>
                         </div>
                     </div>
-                })}
-            </div>
-        </section>
+                </div>
+            })}
+        </div>
+    </section>
     )
 }
 

@@ -4,33 +4,28 @@ import { FaBookmark } from 'react-icons/fa';
 import { FiEdit } from "react-icons/fi";
 import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProfile, fetchProfile } from '../../context/profileSlice';
+// import {  fetchProfile } from '../../context/profileSlice';
 import { MdDelete } from "react-icons/md";
 import { profileModalOn } from '../../context/stateSlice';
+import { fetchProfiles } from '../../context/profileSlice';
 
 const Sidebar = () => {
     const nav =  useNavigate()
     const dispatch= useDispatch()
     const { user } = useSelector((state) => state.userSlice)
-    const {profile}  = useSelector((state)=> state.profileSlice)
-    console.log(profile)
+    const {profiles}  = useSelector((state)=> state.profileSlice)
+    const profile = profiles.find((profile)=> profile?.authorSub === user?.sub)
+    console.log('in sidebar')
     useEffect(()=>{
-        dispatch(fetchProfile(user.sub))
+        dispatch(fetchProfiles())
         
-    },[profile])
-    // console.log(profile?.position)
+    },[])
+   
     const editProfile = ()=>{
         dispatch(profileModalOn())
         
     }
-    const deleteProf = ()=>{
 
-        if(!profile.length==0){
-        dispatch(deleteProfile(profile[0]._id))
-        }
-        
-    }
-    
     
     return (
         <section className='home__left__section'>

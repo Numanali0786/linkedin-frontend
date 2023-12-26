@@ -6,7 +6,9 @@ export const fetchAllComments = createAsyncThunk("fetchAllComments", async () =>
   return data
 });
 export const addComment = createAsyncThunk("addComment", async (newComment) => {
+  console.log(newComment)
   const { data } = await postApi('/api/comments', newComment);
+  console.log(data)
   return data
 });
 

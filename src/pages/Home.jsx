@@ -5,26 +5,43 @@ import { FaCalendarDays } from "react-icons/fa6";
 import { GrArticle } from "react-icons/gr";
 import Posts from '../components/Posts/Posts.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { postModalOn } from '../context/stateSlice.js';
+import { postModalOn, profileModalOff, profileModalOn } from '../context/stateSlice.js';
 import Sidebar from '../components/sidebar/Sidebar.jsx';
 import Aside from '../components/aside/Aside.jsx';
-import { fetchProfile } from '../context/profileSlice.js';
+import { fetchAllPosts } from '../context/postSlice.js';
+
 
 const Home = () => {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.userSlice)
-  const { profile } = useSelector((state) => state.profileSlice)
+  const { profiles } = useSelector((state) => state.profileSlice)
+  const profile = profiles.find((profile) => profile?.authorSub === user?.sub)
+  console.log(profiles)
+  console.log('in home')
+  useEffect(() => {
+    console.log(profile)
+    if (profile) {
+      dispatch(profileModalOff())
+    }
+    else {
+      dispatch(profileModalOn())
+    }
+
+  }, [profile])
+
+
+
 
 
   return (
     <div className="home__container">
       {/* left sidebar */}
-      <Sidebar/>      
+      <Sidebar />
       <section className='home__mid__section'>
         <div className='home__mid__top'>
           <div className="home__mid__top__head">
             {/* <img src={profile?.[0]?.selectedFile || user.picture} alt="" />. */}
-            <img src={( profile?.selectedFile) || user?.picture} alt="" />
+            <img src={(profile?.selectedFile)} alt="" />
 
             <input type="text" placeholder='Start a post' onClick={() => dispatch(postModalOn())} />
           </div>
@@ -38,7 +55,7 @@ const Home = () => {
               <span>Event</span>
             </li>
             <li>
-              <GrArticle size={23}/>
+              <GrArticle size={23} />
               <span>Write article</span>
             </li>
           </ul>
@@ -49,7 +66,7 @@ const Home = () => {
       </section>
 
       {/* right sidebar */}
-      <Aside/>
+      <Aside />
 
     </div>
   )

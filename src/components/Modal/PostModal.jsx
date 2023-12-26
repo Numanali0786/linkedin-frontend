@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { postModalOff } from '../../context/stateSlice';
@@ -8,29 +8,34 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { GoFileMedia } from "react-icons/go";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import { createPost } from '../../context/postSlice';
+import { createPost, fetchAllPosts } from '../../context/postSlice';
 import './PostModal.scss'
 
 
 const PostModal = () => {
-    const { profile } = useSelector((state) => state.profileSlice)
-    const { user } = useSelector((state) => state.userSlice)
 
-    const [postData, setPostData] = useState({ postText: '', selectedFile: '',authorSub:user.sub,author:user.name,profile: profile?.selectedFile || user.picture,position:profile?.position })
+    const { user } = useSelector((state) => state.userSlice)
+    const {profiles}  = useSelector((state)=> state.profileSlice)
+    const profile = profiles.find((profile)=> profile?.authorSub === user?.sub)
+
+    // const [postData, setPostData] = useState({ postText: '', selectedFile: '',author:profile._id,author:user.name,profile: profile?.selectedFile,position:profile?.position })
+    const [postData, setPostData] = useState({ postText: '', selectedFile: '',author:profile?._id })
     const dispatch = useDispatch()
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(postData)
-        dispatch(postModalOff())
         dispatch(createPost(postData))
+        // dispatch(fetchAllPosts())
+        dispatch(postModalOff())
     }
     return (
         <div className='postModal__div'>
             <section className='modal__center'>
                 <div className="modal__content">
                     <div className="content__top">
-                        <img src={user.picture} alt="" />
+                        <img src={profile?.selectedFile } alt="" />
                         <div className='content__top__right'>
                             <span>{user.name} {" "} <FaCaretDown /></span>
                             <p>Post to Anyone</p>

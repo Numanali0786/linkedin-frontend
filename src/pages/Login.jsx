@@ -5,12 +5,14 @@ import { useSelector,useDispatch } from 'react-redux';
 import { jwtDecode } from "jwt-decode";
 import { login } from '../context/userSlice';
 import './Login.scss'
+import { profileModalOn } from '../context/stateSlice';
+
 
 const Login = () => {
     const nav = useNavigate()
     const dispatch = useDispatch()
     const {user} = useSelector((state)=> state.userSlice)
-    // console.log(user)
+    console.log('in login')
   return (
     <div className="login">
       <h1>Signin, and lets go.</h1>
@@ -18,9 +20,10 @@ const Login = () => {
     <GoogleLogin
       onSuccess={credentialResponse => {
         let jwtUser = jwtDecode(credentialResponse.credential)
-        console.log(jwtUser)
+        // console.log(jwtUser)
         dispatch(login(jwtUser))
-        nav('/')
+        // dispatch(profileModalOn())
+        // nav('/')
       }}
       onError={() => {
         console.log('Login Failed');

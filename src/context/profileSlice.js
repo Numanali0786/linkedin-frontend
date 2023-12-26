@@ -1,30 +1,29 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { fetchApi, postApi,patchApi, deleteApi } from '../api'
 
-export const fetchProfile = createAsyncThunk("fetchProfile", async (authorSub) => {
-  const { data } = await fetchApi(`/api/profile/${authorSub}`);
+export const fetchProfiles = createAsyncThunk("fetchProfiles", async () => {
+  // console.log('hi')
+  const { data } = await fetchApi(`/api/profile`);
+  // console.log(data)
   return data
 });
 export const updateProfile = createAsyncThunk("updateProfile", async (updateArgs) => {
   console.log(updateArgs.authorSub,updateArgs.data)
   const { data } = await patchApi(`/api/profile/${updateArgs.authorSub}`,updateArgs.data);
-  console.log(data)
+  // console.log(data)
   return data
 });
 
 export const createProfile = createAsyncThunk("createProfile", async (newProfile) => {
-  console.log(newProfile)
+  // console.log(newProfile)
   const { data } = await postApi('/api/profile', newProfile);
   return data
 });
 
-export const deleteProfile = createAsyncThunk("deleteProfile", async (authorSub) => {
-  const { data } = await deleteApi(`/api/profile/${authorSub}`);
-  return data
-});
+
 
 const initialState = {
-  profile: [],
+  profiles: [],
   isLoading: false,
   isError: false
 }
@@ -34,15 +33,14 @@ export const profileSlice = createSlice({
   initialState,
 
   extraReducers: (builder) => {
-    builder.addCase(fetchProfile.pending, (state, action) => {
+    builder.addCase(fetchProfiles.pending, (state, action) => {
       state.isLoading = true;
     })
-    builder.addCase(fetchProfile.fulfilled, (state, action) => {
+    builder.addCase(fetchProfiles.fulfilled, (state, action) => {
       state.isLoading = false;
-      // console.log(action.payload)
-      state.profile = action.payload;
+      state.profiles = action.payload;
     })
-    builder.addCase(fetchProfile.rejected, (state, action) => {
+    builder.addCase(fetchProfiles.rejected, (state, action) => {
       state.isError = true;
     })
     builder.addCase(createProfile.pending, (state, action) => {
@@ -50,7 +48,7 @@ export const profileSlice = createSlice({
     })
     builder.addCase(createProfile.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.profile = [action.payload];
+      state.profiles = [action.payload,...state.profiles];
     })
     builder.addCase(createProfile.rejected, (state, action) => {
       state.isError = true;
@@ -61,25 +59,12 @@ export const profileSlice = createSlice({
     })
     builder.addCase(updateProfile.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.profile = [action.payload];
+      state.profiles = [action.payload,...state.profiles.filter((profile)=>profile.authorSub!==action.payload?.authorSub)];
     })
     builder.addCase(updateProfile.rejected, (state, action) => {
       state.isError = true;
     })
-    ////////
-    builder.addCase(deleteProfile.pending, (state, action) => {
-      console.log('hii')
-      state.isLoading = true;
-    })
-    builder.addCase(deleteProfile.fulfilled, (state, action) => {
-      console.log(action.payload)
-      state.isLoading = false;
-      state.profile = [];
-    })
-    builder.addCase(deleteProfile.rejected, (state, action) => {
-      console.log('hii')
-      state.isError = true;
-    })
+    
   }
 })
 

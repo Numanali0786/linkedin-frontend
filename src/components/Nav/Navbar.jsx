@@ -126,9 +126,9 @@ const Navbar = () => {
             <HiDotsHorizontal />
             <span>For Business</span>
           </li>
-          <li className='logout'>
+          {user && <li className='logout'>
             <button  onClick={handleLogout}>logout</button>
-          </li>
+          </li>}
 
         </ul>
       </div>
