@@ -179,11 +179,11 @@
                     padding: 14px 6px;
                     border-radius: 5px;
                     svg{
-                        font-size: 20px;
-                        font-size: 1rem;
-                        @include sm{
-                          display: none;
-                        }
+          
+                        font-size: 1.3rem;
+                        // @include sm{
+                        //   display: none;
+                        // }
                     }
                     span{
                         display: block;

@@ -6,10 +6,10 @@ import { addComment, fetchAllComments } from '../../context/commentSlice';
 
 function Comments({ postId,post }) {
     const dispatch = useDispatch()
-    const { user } = useSelector((state) => state.userSlice)
+    const { user,profile } = useSelector((state) => state.userSlice)
     const { posts, isLoading } = useSelector((state) => state.postSlice)
-    const {profiles}  = useSelector((state)=> state.profileSlice)
-    const profile = profiles.find((profile)=> profile?.authorSub === user?.sub)
+    // const {profiles}  = useSelector((state)=> state.profileSlice)
+    // const profile = profiles.find((profile)=> profile?.authorSub === user?.sub)
     const [commentData, setCommentData] = useState({authorPost:postId,author:profile?._id})
     const { comments } = useSelector((state) => state.commentSlice)
 

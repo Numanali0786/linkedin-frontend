@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
@@ -11,8 +11,11 @@ import { profileModalOn } from '../context/stateSlice';
 const Login = () => {
     const nav = useNavigate()
     const dispatch = useDispatch()
-    const {user} = useSelector((state)=> state.userSlice)
-    console.log('in login')
+    useEffect(()=>{
+      console.log('login useeffect')
+      },[])
+  
+
   return (
     <div className="login">
       <h1>Signin, and lets go.</h1>
@@ -20,10 +23,8 @@ const Login = () => {
     <GoogleLogin
       onSuccess={credentialResponse => {
         let jwtUser = jwtDecode(credentialResponse.credential)
-        // console.log(jwtUser)
         dispatch(login(jwtUser))
-        // dispatch(profileModalOn())
-        // nav('/')
+        nav('/')
       }}
       onError={() => {
         console.log('Login Failed');

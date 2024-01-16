@@ -14,9 +14,9 @@ import './PostModal.scss'
 
 const PostModal = () => {
 
-    const { user } = useSelector((state) => state.userSlice)
-    const {profiles}  = useSelector((state)=> state.profileSlice)
-    const profile = profiles.find((profile)=> profile?.authorSub === user?.sub)
+    const { user,profile } = useSelector((state) => state.userSlice)
+    // const {profiles}  = useSelector((state)=> state.profileSlice)
+    // const profile = profiles.find((profile)=> profile?.authorSub === user?.sub)
 
     // const [postData, setPostData] = useState({ postText: '', selectedFile: '',author:profile._id,author:user.name,profile: profile?.selectedFile,position:profile?.position })
     const [postData, setPostData] = useState({ postText: '', selectedFile: '',author:profile?._id })
@@ -27,7 +27,6 @@ const PostModal = () => {
         e.preventDefault()
         console.log(postData)
         dispatch(createPost(postData))
-        // dispatch(fetchAllPosts())
         dispatch(postModalOff())
     }
     return (

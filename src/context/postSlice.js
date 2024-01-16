@@ -2,16 +2,16 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { fetchApi, postApi } from '../api'
 
 export const fetchAllPosts = createAsyncThunk("fetchAllPosts", async () => {
-  console.log('jjj')
+  // console.log('jjj')
   const { data } = await fetchApi('/api/posts');
-  console.log(data)
+  // console.log(data)
   return data
 });
 export const createPost = createAsyncThunk("createPost", async (newPost) => {
-  console.log('cerate')
+  // console.log('cerate')
 
   const { data } = await postApi('/api/posts', newPost);
-  console.log(data)
+  // console.log(data)
   return data
 });
 

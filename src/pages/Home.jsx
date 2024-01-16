@@ -1,33 +1,34 @@
-import React, { useEffect } from 'react';
 import './Home.scss';
+import React, { useEffect } from 'react';
 import { GoFileMedia } from "react-icons/go";
 import { FaCalendarDays } from "react-icons/fa6";
 import { GrArticle } from "react-icons/gr";
 import Posts from '../components/Posts/Posts.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { postModalOn, profileModalOff, profileModalOn } from '../context/stateSlice.js';
+import { eventModalOn, postModalOn, profileModalOff, profileModalOn } from '../context/stateSlice.js';
 import Sidebar from '../components/sidebar/Sidebar.jsx';
 import Aside from '../components/aside/Aside.jsx';
-import { fetchAllPosts } from '../context/postSlice.js';
+
 
 
 const Home = () => {
   const dispatch = useDispatch()
-  const { user } = useSelector((state) => state.userSlice)
   const { profiles } = useSelector((state) => state.profileSlice)
-  const profile = profiles.find((profile) => profile?.authorSub === user?.sub)
-  console.log(profiles)
-  console.log('in home')
+  const { profile } = useSelector((state) => state.userSlice)
+
+ 
+
   useEffect(() => {
-    console.log(profile)
-    if (profile) {
-      dispatch(profileModalOff())
+    if ( profiles!==null && !profile) {
+      dispatch(profileModalOn())
     }
     else {
-      dispatch(profileModalOn())
+      dispatch(profileModalOff())
     }
 
   }, [profile])
+
+  console.log('in home')
 
 
 
@@ -50,7 +51,7 @@ const Home = () => {
               <GoFileMedia />
               <span>Media</span>
             </li>
-            <li>
+            <li onClick={()=> dispatch(eventModalOn())}>
               <FaCalendarDays />
               <span>Event</span>
             </li>

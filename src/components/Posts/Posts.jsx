@@ -22,9 +22,9 @@ const Posts = () => {
     const { posts, isLoading } = useSelector((state) => state.postSlice)
     const { user } = useSelector((state) => state.userSlice)
     const {profiles}  = useSelector((state)=> state.profileSlice)
-    const profile = profiles.find((profile)=> profile?.authorSub === user?.sub)
+    const profile = profiles && profiles.find((profile)=> profile?.authorSub === user?.sub)
 
-    console.log(posts)
+    // console.log(posts)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchAllPosts())
@@ -91,7 +91,7 @@ const Posts = () => {
                                     <span >Comment</span>
                                 </div>
                                 <div className="item">
-                                    <BiRepost />
+                                    <BiRepost  size={24}/>
                                     <span>Repost</span>
                                 </div>
                                 <div className="item">
