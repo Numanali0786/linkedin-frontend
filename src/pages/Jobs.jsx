@@ -1,5 +1,6 @@
 import React from 'react';
 import './Jobs.scss';
+import {Link} from 'react-router-dom'
 
 import { FaBookmark } from "react-icons/fa";
 import { AiOutlineBars } from "react-icons/ai";
@@ -18,37 +19,44 @@ const tabs = [
   {
     id: 6,
     icon: <FaBookmark />,
-    title: 'My jobs'
+    title: 'My jobs',
+    link: 'Myjobs',
   },
   {
     id: 7,
     icon: <AiOutlineBars />,
-    title: 'Preferences'
+    title: 'Preferences',
+    link: 'Preferences',
   },
   {
     id: 8,
     icon: <FaRegCalendarCheck />,
-    title: 'Skill Assessments'
+    title: 'SkillAssessments',
+    link: 'Skill Assessments',
   },
   {
     id: 9,
     icon: <FaNoteSticky />,
-    title: 'Interview prep'
+    title: 'Interview prep',
+    link: 'Interviewprep',
   },
   {
     id: 10,
     icon: <TbNotes />,
-    title: 'Resume Builder'
+    title: 'Resume Builder',
+    link: 'ResumeBuilder',
   },
   {
     id: 11,
     icon: <FaYoutube />,
-    title: 'Job seeker guidance'
+    title: 'Job seeker guidance',
+    link: 'Jobseekerguidance',
   },
   {
     id: 12,
     icon: <IoMdSettings />,
-    title: 'Application settings'
+    title: 'Application settings',
+    link: 'Applicationsettings',
   },
 
 ]
@@ -135,10 +143,10 @@ const Jobs = () => {
     <div className='jobs__div'>
       <div className="left">
         {tabs.map((tab) => (
-          <div key={tab.id} className="tab">
+          <Link to={tab.link} key={tab.id} className="tab">
             {tab.icon}
             {tab.title}
-          </div>
+          </Link>
         ))}
       </div>
       <section className="mid">

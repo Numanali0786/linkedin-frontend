@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Nav/Navbar.jsx';
 import Home from './pages/Home';
 import MyNetwork from './pages/MyNetwork';
@@ -8,8 +8,8 @@ import Messaging from './pages/Messaging';
 import Notifications from './pages/Notifications';
 import PostModal from './components/Modal/PostModal';
 import Login from './pages/Login';
-import { useSelector,useDispatch } from 'react-redux';
-import { getProfile, getUser,setProfile } from './context/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProfile, getUser, setProfile } from './context/userSlice';
 import Profile from './pages/Profile';
 import ProfileModal from './components/Modal/ProfileModal.jsx';
 import { fetchProfiles, selectConversation } from './context/profileSlice.js';
@@ -19,14 +19,15 @@ import { connectSocket, socket } from './socket.js';
 import { profileModalOff, profileModalOn } from './context/stateSlice.js';
 import { addDirectConversation, fetchDirectConversations, updateDirectConversation } from './context/coversation.js';
 import ProfileImageModal from './components/Modal/ProfileImageModal.jsx';
+import InterviewQuest from './pages/InterviewQuest.jsx';
 
 
 const App = () => {
 
   const dispatch = useDispatch()
-  const {user} = useSelector((state)=> state.userSlice)
-  const {postModal,profileModal,eventModal,profileImageModal} = useSelector((state)=> state.stateSlice)
-  
+  const { user } = useSelector((state) => state.userSlice)
+  const { postModal, profileModal, eventModal, profileImageModal } = useSelector((state) => state.stateSlice)
+
   // const { profiles } = useSelector((state) => state.profileSlice)
   // const profile = profiles && profiles.find((profile) => profile?.authorSub === user?.sub)
   // const {conversations} = useSelector((state)=>state.ConversationSlice.direct_chat)
@@ -34,47 +35,47 @@ const App = () => {
 
   // console.log(profiles,profile)
 
-   // this useffect runs once on initial render
+  // this useffect runs once on initial render
 
 
   //  on logging due to dispatch app.jsx rerenders not main.jsx but user,profile,profiles persist in store due to earlier dispatch in usefect
-  useEffect(()=>{
+  useEffect(() => {
     console.log('app useEffect1')
     // fetching user
     dispatch(getUser())
     // fetching all profiles on initial render
     dispatch(fetchProfiles())
-  },[])
+  }, [])
   console.log('in app')
 
 
 
-  
+
   // // this useffect runs twice as profiles change from null to value of user profiles
   // useEffect(()=>{
   //   console.log('app useEffect2')
   //   // setting this user profile to localStorage since it needed often
   //   dispatch(setProfile(profile))
-    
+
   //   // profiles as dependency bcs profile depends on profiles and initially profiles in null fron redux as we only fetch profiles inuseEffect and useEffect runs fter initial render.
   // },[profiles])
   // // console.log(user,profile,profiles)
   // useEffect(()=>{
   //   // console.log(profile,)
-    
+
   //   if(profile){
   //     if(!socket){
   //       console.log('pppppppppp')
   //       connectSocket(profile?._id)
-        
+
   //     }
   //     // new friend request
-      
-      
-      
+
+
+
   //     socket.on("new_friend_request",(data)=>{
   //       dispatch(fetchDirectConversations({ conversations: data }));
-        
+
   //     })
   //     socket.on("request_accepted",(data)=>{
   //       // dispatch
@@ -83,7 +84,7 @@ const App = () => {
   //       // dispatch
   //       // alert('sent')
   //       console.log(data)
-        
+
   //     })
 
   //     socket.on("start_chat",(data)=>{
@@ -96,15 +97,15 @@ const App = () => {
   //       else{
   //         // add direct chat
   //         dispatch(addDirectConversation({conversation:data}))
-          
-          
+
+
   //       }
   //       // unresolved
   //       dispatch(selectConversation({room_id:data._id}))
 
   //     })
 
-      
+
   //   }
 
   //   return ()=>{
@@ -126,23 +127,24 @@ const App = () => {
   // 2== when user is logged in and we refresh page then user percist in storage but profiles got null on refresh as on refresh redux store refreshes
   // Note- profile is also in localstore similar to user so if fetched using getProfile then it also persinst after refresh
   // but initially e]we have to fetch profile using user and profile so in this page its null initially as profiles is njull initially after refresh  
-  
+
   return (
     <BrowserRouter>
-   {user &&  <Navbar/>}
-    {postModal && user && <PostModal/>}
-    {eventModal && user && <EventModal/>}
-    {profileModal && user && <ProfileModal/>}
-    {profileImageModal && user && <ProfileImageModal/>}
-    <Routes>
-      <Route path='/' Component={user? Home:Login} />
-      <Route path='/mynetwork' Component={user? MyNetwork:Login} />
-      <Route path='/jobs' Component={user ?Jobs :Login} />
-      <Route path='/messaging' Component={user ?Messaging :Login} />
-      <Route path='/notifications' Component={user ?Notifications :Login} />
-      <Route path='/profile' Component={user ?Profile :Login} />
-      <Route path='/events' Component={user ?Events :Login} />
-    </Routes>      
+      {user && <Navbar />}
+      {postModal && user && <PostModal />}
+      {eventModal && user && <EventModal />}
+      {profileModal && user && <ProfileModal />}
+      {profileImageModal && user && <ProfileImageModal />}
+      <Routes>
+        <Route path='/' Component={user ? Home : Login} />
+        <Route path='/mynetwork' Component={user ? MyNetwork : Login} />
+        <Route path='jobs' Component={user ? Jobs : Login}/>
+        <Route path='jobs/Interviewprep' Component={user ? InterviewQuest : Login} />
+        <Route path='/messaging' Component={user ? Messaging : Login} />
+        <Route path='/notifications' Component={user ? Notifications : Login} />
+        <Route path='/profile' Component={user ? Profile : Login} />
+        <Route path='/events' Component={user ? Events : Login} />
+      </Routes>
     </BrowserRouter>
   )
 }

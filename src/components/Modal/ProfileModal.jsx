@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ProfileModal.scss';
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,6 +32,8 @@ const validationSchema = z.object({
 
 const ProfileModal = () => {
     const { profile,user } = useSelector((state) => state.userSlice)
+    var [name,setName] = useState('')
+    console.log(name)
 
 
     // useEffect(()=>{
@@ -44,6 +46,8 @@ const ProfileModal = () => {
 
 
     const dispatch = useDispatch()
+    const ref = useRef()
+    // console.log(ref.current.value)
 
     // /////
 
@@ -98,6 +102,10 @@ const ProfileModal = () => {
         nav('/')
     };
 
+    const handleName = (e,onChange)=>{
+        onChange(e)
+        setName(profile?.name || e.target.value)
+    }
 
     return (
         <div className='profileModal__div'>
@@ -111,7 +119,8 @@ const ProfileModal = () => {
                                 name="name"
                                 control={control}
                                 render={({ field: { onChange, value, name } }) => (
-                                    <input name={name} value={value} onChange={(e) => onChange(e)} />
+                                    <input ref={ref} name={name} value={value} onChange={(e)=>{onChange(e)
+                                    setName(e.target.value)}} />
                                 )}
                             />
                         </label>
@@ -291,7 +300,7 @@ const ProfileModal = () => {
                         </label>
 
                         <button type='button' className='close icon__button' onClick={() => profile && dispatch(profileModalOff())}><IoMdClose size={22} /></button>
-                        <button type='submit' className="post__btn" onClick={handleSubmit(onSubmit)} >Save</button>
+                        <button  disabled={!name && !profile.name } className={`${name || profile?.name?"post__btn":"disable__btn"}`} type='submit' onClick={handleSubmit(onSubmit)} >Save</button>
                     </form>
                 </div>
             </section>
