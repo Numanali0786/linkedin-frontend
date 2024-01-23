@@ -57,10 +57,11 @@ const Sidebar = () => {
                     <h4 onClick={editProfile} >{profile?.name} {" "} <FiEdit size={13}/></h4>
                     {/* <p style={{'textAlign':'center'}} onClick={deleteProf} > <MdDelete size={15}/></p> */}
 
-                    <p>{profile?.position}</p>
+                    <p className='position'>{profile?.position}</p>
                     <hr />
-                    <span>Profile viewers</span>
-                    <span>View all anylitics</span>
+                    <span><Link to='profileViews'>Profile viewers</Link></span>
+                  
+                    <span><Link to='analytics'>View all anylitics</Link></span>
 
                     <hr />
 
@@ -74,10 +75,10 @@ const Sidebar = () => {
                         <Link>Recent</Link>
                     </li>
                     <li>
-                        <Link>Groups</Link>
+                        <Link to='mynetwork/Groups'>Groups</Link>
                     </li>
                     <div className='home__events'>
-                        <Link to='/events'>Events</Link>
+                        <Link to='/mynetwork/Events'>Events</Link>
                         <ul>
                             {myEvents.map((event)=>(
                                 <Link key={event._id} to='/events'><MdEvent size={16}/>{event.name}</Link>
@@ -86,7 +87,7 @@ const Sidebar = () => {
                         </ul>
                         
                     </div>
-                    <li><Link>Followed Hashtags</Link></li>
+                    <li><Link to='mynetwork/Newsletters'>Newsletters</Link></li>
                     <br />
                     <hr />
                     

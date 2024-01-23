@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { socket } from '../socket.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCurrentMessages, fetchDirectConversations, setCurrentConversation, addDirectMessage } from '../context/coversation.js'
-import { selectConversation } from '../context/profileSlice.js'
+import { fetchProfiles, selectConversation } from '../context/profileSlice.js'
 
 import { v4 as uuidv4 } from 'uuid';
 import './Messaging.scss'
-
+import { format } from 'date-fns';
 import { FaRegEdit } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 import { BiSolidVideoPlus } from "react-icons/bi";
@@ -17,10 +17,13 @@ import { TbGif } from "react-icons/tb";
 import { MdInsertEmoticon } from "react-icons/md";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { IoSearch } from 'react-icons/io5'
+import RightAid from '../components/RightAid.jsx'
 
 
 const Messaging = () => {
-  const user_id = JSON.parse(window.localStorage.getItem('profile'))?._id
+  const profile = JSON.parse(window.localStorage.getItem('profile'))
+  const user_id = profile?._id
+
   const dispatch = useDispatch()
 
   const [text, setText] = useState(null)
@@ -28,19 +31,9 @@ const Messaging = () => {
   console.log(conversations, current_conversation)
 
   const { room_id, friends } = useSelector((state) => state.profileSlice)
-  // console.log(friends)
-
-  useEffect(() => {
-    socket?.emit('get_direct_conversations', { user_id: user_id }, (data) => {
-      // data=> list of conversations
-      console.log(data)
-
-      dispatch(fetchDirectConversations({ conversations: data }));
+  console.log(current_conversation)
 
 
-      // -===============
-    })
-  }, [socket])
 
   useEffect(() => {
 
@@ -68,6 +61,8 @@ const Messaging = () => {
             message: message.text,
             incoming: message.to === user_id,
             outgoing: message.from === user_id,
+            created_at: new Date()
+
           }
         })
         );
@@ -76,6 +71,11 @@ const Messaging = () => {
     })
 
   }, [room_id, current_conversation])
+
+  useEffect(() => {
+    dispatch(fetchProfiles())
+
+  }, [])
 
   // **************
   return (
@@ -102,7 +102,13 @@ const Messaging = () => {
                 dispatch(selectConversation({ room_id: conv.id }));
               }}>
                 <img src={conv.selectedFile} alt="" />
-                {conv.name}
+                <div className="content">
+
+                  <p>{conv.name}</p>
+                  {current_messages[current_messages.length - 1] && current_conversation.id == conv?.id && <span className='msg'>msg: {current_messages[current_messages.length - 1]?.message}</span>}
+                </div>
+                {current_messages[current_messages.length - 1] && <span className='time'>{format(current_messages[current_messages.length - 1]?.created_at, 'MMM d')}</span>}
+
               </div>
             ))}
           </div>
@@ -125,9 +131,19 @@ const Messaging = () => {
               <div className="messages">
 
                 <div className="chats">
-                  {current_messages.map((msg) => (
-                    <div className='chat' key={msg.id}>{msg.message}</div>
-                  ))}
+                  {current_messages.map((msg) => {
+                    console.log('testttttttt', msg)
+                    return <div className='chat' key={msg.id}>
+                      <div className="chat__top">
+                      <p className='chat__img'>{msg.outgoing ? <img src={profile?.selectedFile}/> :<img src={current_conversation.selectedFile}/>}</p>
+                      <p className='chat__name'>{msg.outgoing ? profile.name : current_conversation.name}</p>
+                      <p className='chat__time'>{format(msg?.created_at, 'h:mm a')}</p>
+                      </div>
+                      <p className='chat__msg'>{msg.message} </p>
+                      {/* <span>{format(msg?.created_at, 'MMMM do yyyy, h:mm:ss a')}</span>  */}
+
+                    </div>
+                  })}
                 </div>
 
                 <form action="">
@@ -167,15 +183,9 @@ const Messaging = () => {
 
       </section>
 
-      <section className="right">
-        <div className='ad'>Ad <BsThreeDots /></div>
-        <span className='small'>Keep up with interesting, relevant updates</span>
-        <div className="img">
-          <img src="https://media.licdn.com/dms/image/C4E0BAQHI9ATKrp3GJw/company-logo_100_100/0/1637345110214?e=1712793600&v=beta&t=P8J6LjrtaRTXHqDMmZBwv3lgsF_TE6-omRL_lLGpv18" alt="" />
-        </div>
-        <span className='desc'>Numan, grow your career by following ETS India</span>
-        <button>Follow</button>
-      </section>
+      <RightAid btn="follow" color="button__blue" text="User, grow your career by following ETS India"
+        url='https://media.licdn.com/dms/image/C4E0BAQHI9ATKrp3GJw/company-logo_100_100/0/1637345110214?e=1712793600&v=beta&t=P8J6LjrtaRTXHqDMmZBwv3lgsF_TE6-omRL_lLGpv18' />
+
     </div>
   )
 }

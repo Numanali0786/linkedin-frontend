@@ -40,7 +40,7 @@ const Aside = () => {
 
         <img src="https://media.licdn.com/dms/image/D5610AQHqR1gGHdWBmQ/image-pad_100_100/0/1687844283957?e=1700222400&v=beta&t=xDGizeR8D07Op7fGNomXWOmGMVLauoYhay9xiUBI3Zw" alt="" />
         <h6>Hitachi Social Innovation is POWERING GOOD
-            <button>Follow</button>
+            <button>Try for free</button>
         </h6>
 
     </div>

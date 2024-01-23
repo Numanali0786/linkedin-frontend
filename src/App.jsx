@@ -20,13 +20,24 @@ import { profileModalOff, profileModalOn } from './context/stateSlice.js';
 import { addDirectConversation, fetchDirectConversations, updateDirectConversation } from './context/coversation.js';
 import ProfileImageModal from './components/Modal/ProfileImageModal.jsx';
 import InterviewQuest from './pages/InterviewQuest.jsx';
+import MyJobs from './pages/MyJobs .jsx';
+import PrefrencesModal from './components/Modal/PrefrencesModal.jsx';
+import JobGuide from './pages/JobGuide.jsx';
+import Connections from './pages/my-networks/Connections.jsx';
+import Followers from './pages/my-networks/Followers.jsx';
+import Contacts from './pages/my-networks/Contacts.jsx';
+import Groups from './pages/my-networks/Groups.jsx';
+import Pages from './pages/my-networks/Pages.jsx';
+import Newsletters from './pages/my-networks/Newsletters.jsx';
+import Analytics from './pages/Analytics.jsx';
+import ProfileViews from './pages/ProfileViews.jsx';
 
 
 const App = () => {
 
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.userSlice)
-  const { postModal, profileModal, eventModal, profileImageModal } = useSelector((state) => state.stateSlice)
+  const { postModal, profileModal, eventModal, profileImageModal,prefrencesModal } = useSelector((state) => state.stateSlice)
 
   // const { profiles } = useSelector((state) => state.profileSlice)
   // const profile = profiles && profiles.find((profile) => profile?.authorSub === user?.sub)
@@ -135,15 +146,29 @@ const App = () => {
       {eventModal && user && <EventModal />}
       {profileModal && user && <ProfileModal />}
       {profileImageModal && user && <ProfileImageModal />}
+      {prefrencesModal && user && <PrefrencesModal />}
       <Routes>
         <Route path='/' Component={user ? Home : Login} />
+
         <Route path='/mynetwork' Component={user ? MyNetwork : Login} />
+        <Route path='/analytics' Component={user ? Analytics : Login} />
+        <Route path='/profileViews' Component={user ? ProfileViews : Login} />
+        <Route path='mynetwork/Connections' Component={user ? Connections : Login} />
+        <Route path='mynetwork/Followings' Component={user ? Followers : Login} />
+        <Route path='mynetwork/Contacts' Component={user ? Contacts : Login} />
+        <Route path='mynetwork/Groups' Component={user ? Groups : Login} />
+        <Route path='mynetwork/Events' Component={user ? Events : Login} />
+        <Route path='mynetwork/Pages' Component={user ? Pages : Login} />
+        <Route path='mynetwork/Newsletters' Component={user ? Newsletters : Login} />
+
+
         <Route path='jobs' Component={user ? Jobs : Login}/>
+        <Route path='jobs/Myjobs' Component={user ? MyJobs : Login}/>
         <Route path='jobs/Interviewprep' Component={user ? InterviewQuest : Login} />
+        <Route path='jobs/Jobseekerguidance' Component={user ? JobGuide : Login} />
         <Route path='/messaging' Component={user ? Messaging : Login} />
         <Route path='/notifications' Component={user ? Notifications : Login} />
         <Route path='/profile' Component={user ? Profile : Login} />
-        <Route path='/events' Component={user ? Events : Login} />
       </Routes>
     </BrowserRouter>
   )

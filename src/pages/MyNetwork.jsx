@@ -16,7 +16,7 @@ import { RiUserFollowFill } from "react-icons/ri";
 import { MdContacts } from "react-icons/md";
 import { FiUserPlus } from "react-icons/fi";
 
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 const manageNetwork = [
   {
     id: 1,
@@ -125,10 +125,12 @@ const MyNetwork = () => {
         <p className="header">Manage my network</p>
         <ul>
           {manageNetwork.map((item) => (
+              <Link key={item.id} to={item.title}>
             <li key={item.id}>
               <span>{item.icon} {item.title}</span>
               <span>{item.count}</span>
             </li>
+              </Link>
           ))}
         </ul>
 

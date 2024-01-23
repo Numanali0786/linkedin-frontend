@@ -35,6 +35,9 @@ const Navbar = () => {
   }
 
 
+  
+
+
 
   const { profiles,friendRequests } = useSelector((state) => state.profileSlice)
   const profile = profiles && profiles.find((profile) => profile?.authorSub === user?.sub)
@@ -94,7 +97,7 @@ const tabs = [
     //   dispatch(fetchDirectConversations({ conversations: data }));
 
 
-    //   // -===============
+    // //   // -===============
     // })
     // setting this user profile to localStorage since it needed often
     console.log('pppppp',profile)
@@ -212,6 +215,24 @@ const tabs = [
     }
     fetchUsers()
   }, [query])
+
+
+  useEffect(()=>{
+    profile && dispatch(fetchFriendRequests(profile?._id))
+    profile && dispatch(fetchSentRequests(profile?._id))
+    profile && dispatch(fetchFriends(profile?._id))
+    profile &&  socket?.emit('get_direct_conversations', { user_id: profile?._id }, (data) => {
+      console.log(data)
+  
+      dispatch(fetchDirectConversations({ conversations: data }));
+  
+  
+    //   // -===============
+    })
+  },[profile])
+
+  // useEffect(()=>{
+  // },[])
 
 
   return (

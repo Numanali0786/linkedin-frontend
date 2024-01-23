@@ -11,6 +11,7 @@ const initialState = {
   profileModal: false,
   eventModal: false,
   profileImageModal:false,
+  prefrencesModal:false,
 }
 
 export const stateSlice = createSlice({
@@ -35,6 +36,12 @@ export const stateSlice = createSlice({
     profileImageModalOn: (state) => {
       state.profileImageModal = true
     },
+    prefrencesModalOn: (state) => {
+      state.prefrencesModal = true
+    },
+    prefrencesModalOff: (state) => {
+      state.prefrencesModal = false
+    },
     eventModalOff: (state) => {
       console.log('jhg')
       state.eventModal = false
@@ -55,6 +62,6 @@ export const { postModalOff,
   profileModalOn,
   profileImageModalOff,
   profileImageModalOn,
-eventModalOff,eventModalOn } = stateSlice.actions
+eventModalOff,eventModalOn,prefrencesModalOn,prefrencesModalOff } = stateSlice.actions
 
 export default stateSlice.reducer

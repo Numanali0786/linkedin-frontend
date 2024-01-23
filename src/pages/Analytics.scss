@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.contactsWrapper{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+.contactsDiv {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: .8rem;
+    padding: 10px 1rem;
+    // margin-top: 1rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 14px;
+
+    .count {
+        color: rgba(0, 0, 0, 0.7);
+        display: block;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgb(236, 232, 232);
+        font-size: smaller;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 1rem 1rem 1rem;
+        margin: 0 -1rem;
+        
+    }
+    
+    
+    .contacts{
+        .contact{
+            padding: 1rem 0;
+            border-bottom: 1px solid rgb(236, 232, 232);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            // background-color: aqua;
+            img{
+                width: 55px;
+            }
+        }
+    }
+
+
+}
+}

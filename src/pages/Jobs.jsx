@@ -14,6 +14,8 @@ import { MdWorkspacePremium } from "react-icons/md";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 import extra from './extra.gif'
+import { prefrencesModalOn } from '../context/stateSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const tabs = [
   {
@@ -26,14 +28,14 @@ const tabs = [
     id: 7,
     icon: <AiOutlineBars />,
     title: 'Preferences',
-    link: 'Preferences',
+    link: '',
   },
-  {
-    id: 8,
-    icon: <FaRegCalendarCheck />,
-    title: 'SkillAssessments',
-    link: 'Skill Assessments',
-  },
+  // {
+  //   id: 8,
+  //   icon: <FaRegCalendarCheck />,
+  //   title: 'SkillAssessments',
+  //   link: 'Skill Assessments',
+  // },
   {
     id: 9,
     icon: <FaNoteSticky />,
@@ -139,11 +141,14 @@ const premiumJobs = [
 
 
 const Jobs = () => {
+  const {prefrencesModal} = useSelector((state)=>state.stateSlice)
+  console.log(prefrencesModal)
+  const dispatch = useDispatch()
   return (
     <div className='jobs__div'>
       <div className="left">
         {tabs.map((tab) => (
-          <Link to={tab.link} key={tab.id} className="tab">
+          <Link onClick={()=>tab.title==='Preferences' && dispatch(prefrencesModalOn())} to={tab.link} key={tab.id} className="tab">
             {tab.icon}
             {tab.title}
           </Link>
