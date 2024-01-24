@@ -44,7 +44,7 @@ const Contacts = () => {
 
       <div className="contactsDiv">
         <p className='header'>Saved Contacts  </p>
-        <p className='count'>100 Imported Contacts</p>
+        <p className='count'>{contacts.length} Imported Contacts</p>
 
 
 

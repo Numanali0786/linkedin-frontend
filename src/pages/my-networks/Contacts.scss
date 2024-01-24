@@ -11,7 +11,7 @@
     padding: 10px 1rem;
     // margin-top: 1rem;
     font-family: "Roboto", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     font-style: normal;
     font-size: 14px;
 
@@ -40,6 +40,10 @@
             gap: 2rem;
             align-items: center;
             // background-color: aqua;
+            cursor: pointer;
+            &:hover{
+                background-color: rgb(242, 240, 255);
+            }
             img{
                 width: 55px;
             }

@@ -5,6 +5,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 // import extra from './extra.gif'
 import { FaBookmark } from "react-icons/fa";
+import RightAid from '../../components/RightAid';
 
 
 
@@ -54,39 +55,7 @@ const pages = [
 
 
 ]
-const moreGroups = [
-  {
-    id: 6,
-    img: 'https://media.licdn.com/dms/image/D4E07AQH72I0xcXrYTA/group-logo_image-shrink_48x48/0/1701878300047?e=1706515200&v=beta&t=_kPF63SjWjvXeX0y_6vTciCClFIzQNQ6BAXHYPGfK24',
-    title: "MySQL",
-    members: "301,197",
 
-  },
-  {
-    id: 7,
-    img: 'https://media.licdn.com/dms/image/C560BAQFq1rDh4XPWPQ/company-logo_100_100/0/1673000396241/dolami_logo?e=1714003200&v=beta&t=LVq545879DR7-yf1S4dDps6lKihm5_4xRrIbbfoJuu4',
-    title: "Tech Startup",
-    members: "301,197",
-
-  },
-  {
-    id: 8,
-    img: 'https://media.licdn.com/dms/image/D4D0BAQHtHW_E39kJ2Q/company-logo_100_100/0/1686137139328?e=1714003200&v=beta&t=EURe1y_hoKsfnCFej6jB5ROp5PRVxsAfflOvlM1pUCA',
-    title: "Trioford Technosys",
-    members: "  2,222 ",
-
-  },
-
-  {
-    id: 9,
-    img: 'https://media.licdn.com/dms/image/D560BAQHIoIg_DEokPg/company-logo_100_100/0/1684226484674?e=1714003200&v=beta&t=DV3KWVKbqaxlTrAfDVt2hkFdgoJ_Ylx3lEXJByQxWMY',
-    title: "Travelfika",
-    members: "2,920",
-
-  },
-
-
-]
 
 
 
@@ -102,7 +71,8 @@ const Pages = () => {
         <div className="tops">
           <br />
           <h3>Pages</h3>
-          <br />
+          <p>Total {pages.length} pages</p>
+          <hr />
           {pages.map((tab) => (
               
             <div key={tab.id} className="top">
@@ -118,44 +88,9 @@ const Pages = () => {
           <br />
         </div>
       </section>
-      <ul className="right">
-        <li>
-          Dear, learn what hiring managers look for in answers to top interview questions
-        </li>
-        <br />
-        <li>
-          Where do you see yourself in 5 years?
-        </li>
-        <li>Can you explain your employment gap?</li>
-
-        <li>Tell me about a time you failed or made a mistake.</li>
-
-
-
-
-
-
-        <button>Show more <FaArrowRightLong size={18} /></button>
-
-        <div className="extras">
-          <span>About</span>
-          <span>Accessibility</span>
-          <br />
-          <span>Help Center</span>
-          <br />
-
-          <span>Privacy & Terms</span>
-          <br />
-          <span>Ad Choices</span>
-          <span>Advertising</span>
-          <br />
-
-          <span>Business Services</span>
-          <br />
-          <span>Get the LinkedIn app</span>
-          <span>LinkedIn Corporation © 2024</span>
-        </div>
-      </ul>
+      <RightAid btn="follow" color="button__blue" text="User, grow your career by following ETS India"
+        url='https://media.licdn.com/dms/image/C4E0BAQHI9ATKrp3GJw/company-logo_100_100/0/1637345110214?e=1712793600&v=beta&t=P8J6LjrtaRTXHqDMmZBwv3lgsF_TE6-omRL_lLGpv18' />
+              
     </div>
   )
 }

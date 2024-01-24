@@ -24,7 +24,9 @@ const Connections = () => {
       <div className="connectionWrapper">
 
       <div className="connectionsDiv">
-        <p className='header'>Connections</p>
+        <h4 className='header'>Connections</h4>
+
+        <p>You have connected with {friends?.length} people. </p>
         <div className="connections">
           {friends?.map((fr) => (
             <div key={fr._id} className="connection">

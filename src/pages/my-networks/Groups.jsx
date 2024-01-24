@@ -5,6 +5,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 // import extra from './extra.gif'
 import { FaBookmark } from "react-icons/fa";
+import RightAid from '../../components/RightAid';
 
 
 
@@ -114,50 +115,16 @@ const Groups = () => {
                 <p className='members'>{tab.members} members</p>
 
               </div>
-              <BsThreeDots size={23} />
+                {selectedGroup==yourGroups?<BsThreeDots size={23} />:
+                <button className='join__btn'>Join</button>}
             </div>
           ))}
           <br />
         </div>
       </section>
-      <ul className="right">
-        <li>
-          Dear, learn what hiring managers look for in answers to top interview questions
-        </li>
-        <br />
-        <li>
-          Where do you see yourself in 5 years?
-        </li>
-        <li>Can you explain your employment gap?</li>
-
-        <li>Tell me about a time you failed or made a mistake.</li>
-
-
-
-
-
-
-        <button>Show more <FaArrowRightLong size={18} /></button>
-
-        <div className="extras">
-          <span>About</span>
-          <span>Accessibility</span>
-          <br />
-          <span>Help Center</span>
-          <br />
-
-          <span>Privacy & Terms</span>
-          <br />
-          <span>Ad Choices</span>
-          <span>Advertising</span>
-          <br />
-
-          <span>Business Services</span>
-          <br />
-          <span>Get the LinkedIn app</span>
-          <span>LinkedIn Corporation © 2024</span>
-        </div>
-      </ul>
+      <RightAid btn="follow" color="button__blue" text="User, grow your career by following ETS India"
+        url='https://media.licdn.com/dms/image/C4E0BAQHI9ATKrp3GJw/company-logo_100_100/0/1637345110214?e=1712793600&v=beta&t=P8J6LjrtaRTXHqDMmZBwv3lgsF_TE6-omRL_lLGpv18' />
+              
     </div>
   )
 }
