@@ -15,7 +15,7 @@ import ProfileModal from './components/Modal/ProfileModal.jsx';
 import { fetchProfiles, selectConversation } from './context/profileSlice.js';
 import EventModal from './components/Modal/EventModal.jsx';
 import Events from './pages/Events.jsx';
-import { connectSocket, socket } from './socket.js';
+// import { connectSocket, socket } from './socket.js';
 import { profileModalOff, profileModalOn } from './context/stateSlice.js';
 import { addDirectConversation, fetchDirectConversations, updateDirectConversation } from './context/coversation.js';
 import ProfileImageModal from './components/Modal/ProfileImageModal.jsx';
@@ -31,13 +31,14 @@ import Pages from './pages/my-networks/Pages.jsx';
 import Newsletters from './pages/my-networks/Newsletters.jsx';
 import Analytics from './pages/Analytics.jsx';
 import ProfileViews from './pages/ProfileViews.jsx';
+import ResumeModal from './components/Modal/ResumeModal.jsx';
 
 
 const App = () => {
 
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.userSlice)
-  const { postModal, profileModal, eventModal, profileImageModal,prefrencesModal } = useSelector((state) => state.stateSlice)
+  const { postModal, profileModal, eventModal, profileImageModal,prefrencesModal,resumeModal } = useSelector((state) => state.stateSlice)
 
   // const { profiles } = useSelector((state) => state.profileSlice)
   // const profile = profiles && profiles.find((profile) => profile?.authorSub === user?.sub)
@@ -147,6 +148,7 @@ const App = () => {
       {profileModal && user && <ProfileModal />}
       {profileImageModal && user && <ProfileImageModal />}
       {prefrencesModal && user && <PrefrencesModal />}
+      {resumeModal && user && <ResumeModal />}
       <Routes>
         <Route path='/' Component={user ? Home : Login} />
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Aside.scss';
+import RightAid from '../RightAid';
 
 const Aside = () => {
   return (
@@ -36,12 +37,15 @@ const Aside = () => {
         </ul>
     </div>
     <div className="down">
-        <p>Stay updated on the latest in digital technologies.</p>
+        {/* <p>Stay updated on the latest in digital technologies.</p>
 
         <img src="https://media.licdn.com/dms/image/D5610AQHqR1gGHdWBmQ/image-pad_100_100/0/1687844283957?e=1700222400&v=beta&t=xDGizeR8D07Op7fGNomXWOmGMVLauoYhay9xiUBI3Zw" alt="" />
         <h6>Hitachi Social Innovation is POWERING GOOD
             <button>Try for free</button>
-        </h6>
+        </h6> */}
+     <RightAid btn="follow" color="button__blue" text="User, grow your career by following ETS India"
+        url='https://media.licdn.com/dms/image/C4E0BAQHI9ATKrp3GJw/company-logo_100_100/0/1637345110214?e=1712793600&v=beta&t=P8J6LjrtaRTXHqDMmZBwv3lgsF_TE6-omRL_lLGpv18' />
+              
 
     </div>
 </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, fetchFriends, fetchFriendRequests, fetchProfiles, fetchSentRequests } from '../context/profileSlice';
-import { connectSocket, socket } from '../socket';
+import { socket } from '../socket';
 import './MyNetwork.scss';
 import { BsThreeDots } from "react-icons/bs";
 

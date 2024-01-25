@@ -1,3 +1,4 @@
+@import '../mixins.scss';
 .my__networks {
     color: rgb(0 0 0/.9);
     max-width: 1200px;
@@ -8,6 +9,21 @@
     grid-template-columns: 1fr 2.5fr;
     gap: 1.3rem;
     font-weight: 400;
+    // @include lg{
+    //     grid-template-columns: .7fr 1.8fr;
+       
+    // }
+    @include lg{
+        display: flex;
+        flex-direction: column;
+        padding:0 5rem;
+        
+    }
+    @include sm{
+
+        padding:0 2rem;
+        
+    }
 
     .left {
         background-color: white;
@@ -159,8 +175,19 @@
             .users {
                 margin-top: 1rem;
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 gap: 1rem;
+
+                // @include lg{
+                //     grid-template-columns: .7fr 1.8fr;
+                   
+                // }
+                @include md{
+                    grid-template-columns: repeat(2, 1fr);
+
+                    
+                }
+           
 
                 .user {
                     position: relative;

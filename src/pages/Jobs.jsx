@@ -14,7 +14,7 @@ import { MdWorkspacePremium } from "react-icons/md";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 import extra from './extra.gif'
-import { prefrencesModalOn } from '../context/stateSlice';
+import { prefrencesModalOn, resumeModalOn } from '../context/stateSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const tabs = [
@@ -46,7 +46,7 @@ const tabs = [
     id: 10,
     icon: <TbNotes />,
     title: 'Resume Builder',
-    link: 'ResumeBuilder',
+    link: '',
   },
   {
     id: 11,
@@ -148,7 +148,8 @@ const Jobs = () => {
     <div className='jobs__div'>
       <div className="left">
         {tabs.map((tab) => (
-          <Link onClick={()=>tab.title==='Preferences' && dispatch(prefrencesModalOn())} to={tab.link} key={tab.id} className="tab">
+          <Link onClick={()=>tab.title==='Preferences' && dispatch(prefrencesModalOn()) || tab.title==='Resume Builder' && dispatch(resumeModalOn())}
+           to={tab.link} key={tab.id} className="tab">
             {tab.icon}
             {tab.title}
           </Link>

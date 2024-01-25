@@ -1,3 +1,4 @@
+@import '../mixins.scss';
 .myjobs__div {
     position: relative;
     display: grid;
@@ -9,7 +10,21 @@
     gap: 1.3rem;
     color: rgba(0, 0, 0, 0.85);
     font-size: 14px;
+    @include lg{
+        grid-template-columns: .7fr 1.8fr;
+       
+    }
+    @include md{
+        display: flex;
+        flex-direction: column;
+        padding:0 5rem;
+        
+    }
+    @include sm{
 
+        padding:0 2rem;
+        
+    }
     .light {
         color: rgba(0, 0, 0, 0.6);
 
@@ -18,6 +33,10 @@
 
     .left {
         position: sticky;
+        @include lg{
+            position: static;
+           
+        }
         top: 5.7rem;
         background-color: white;
         border: 1px solid rgba(0, 0, 0, 0.2);
@@ -168,10 +187,10 @@
 
         .extras {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 4rem;
 
             span {
-                font-weight: 100;
+                // font-weight: 100;
                 margin-right: 1rem;
                 margin-bottom: 4px;
                 font-size: small;

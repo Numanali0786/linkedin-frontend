@@ -12,6 +12,7 @@ const initialState = {
   eventModal: false,
   profileImageModal:false,
   prefrencesModal:false,
+  resumeModal:false,
 }
 
 export const stateSlice = createSlice({
@@ -49,6 +50,13 @@ export const stateSlice = createSlice({
     eventModalOn: (state) => {
       state.eventModal = true
     },
+    resumeModalOff: (state) => {
+      console.log('jhg')
+      state.resumeModal = false
+    },
+    resumeModalOn: (state) => {
+      state.resumeModal = true
+    },
 
 
 
@@ -62,6 +70,7 @@ export const { postModalOff,
   profileModalOn,
   profileImageModalOff,
   profileImageModalOn,
-eventModalOff,eventModalOn,prefrencesModalOn,prefrencesModalOff } = stateSlice.actions
+eventModalOff,eventModalOn,prefrencesModalOn,prefrencesModalOff,
+resumeModalOff,resumeModalOn } = stateSlice.actions
 
 export default stateSlice.reducer

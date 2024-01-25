@@ -56,7 +56,7 @@ const Home = () => {
               <span>Event</span>
             </li>
             <li>
-              <GrArticle size={23} />
+              <GrArticle size={23} onClick={() => dispatch(postModalOn())}/>
               <span>Write article</span>
             </li>
           </ul>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { socket } from '../socket.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCurrentMessages, fetchDirectConversations, setCurrentConversation, addDirectMessage } from '../context/coversation.js'
@@ -21,19 +21,30 @@ import RightAid from '../components/RightAid.jsx'
 
 
 const Messaging = () => {
+  const msg_cont = useRef()
   const profile = JSON.parse(window.localStorage.getItem('profile'))
   const user_id = profile?._id
 
   const dispatch = useDispatch()
 
-  const [text, setText] = useState(null)
+  const [text, setText] = useState('')
+  const [scrolledHeight, setScrolledHeight] = useState(msg_cont.current?.scrollHeight)
   const { conversations, current_conversation, current_messages } = useSelector((state) => state.ConversationSlice.direct_chat)
-  console.log(conversations, current_conversation)
+  // console.log(conversations, current_conversation)
 
   const { room_id, friends } = useSelector((state) => state.profileSlice)
-  console.log(current_conversation)
+  // console.log(current_conversation)
+
+useEffect(()=>{
+  if(room_id){
+  console.log('scccccccrolllllll',msg_cont.current)
+  // setScrollHeight(msg_cont.current?.scrollHeight)         
+  msg_cont.current.scrollTop=  10000
+      
+  }
 
 
+},[scrolledHeight,room_id,text,msg_cont])
 
   useEffect(() => {
 
@@ -43,7 +54,7 @@ const Messaging = () => {
     dispatch(setCurrentConversation(current));
     current && socket?.emit("get_messages", { conversation_id: current?.id }, (data) => {
       // data => list of messages
-      console.log(data, "List of messages");
+      // console.log(data, "List of messages");
       dispatch(fetchCurrentMessages({ messages: data }));
     });
     socket?.on("new_message", (data) => {
@@ -66,6 +77,8 @@ const Messaging = () => {
           }
         })
         );
+
+        setScrolledHeight(msg_cont.current?.scrollHeight)  
       }
 
     })
@@ -79,7 +92,7 @@ const Messaging = () => {
 
   // **************
   return (
-    <div className='messaging_div'>
+    <div className='messagings_div'>
       <section className='left'>
         <div className="conversaions__div">
 
@@ -125,14 +138,14 @@ const Messaging = () => {
             </div>
           </div>}
 
-          <div className="message__box">
+          <div  className="message__box">
 
             {room_id ? (
               <div className="messages">
 
-                <div className="chats">
+                <div className="chats" ref={msg_cont}>
                   {current_messages.map((msg) => {
-                    console.log('testttttttt', msg)
+                    // console.log('testttttttt', msg)
                     return <div className='chat' key={msg.id}>
                       <div className="chat__top">
                       <p className='chat__img'>{msg.outgoing ? <img src={profile?.selectedFile}/> :<img src={current_conversation.selectedFile}/>}</p>
@@ -166,6 +179,8 @@ const Messaging = () => {
                         type: "Text",
                       });
                       setText('')
+                      console.log(msg_cont.current?.scrollHeight)
+   
                     }} disabled={!text} className={`${!text == "" ? "post__btn" : "disable__btn"}`}>send</button>
 
                     <HiOutlineDotsHorizontal />

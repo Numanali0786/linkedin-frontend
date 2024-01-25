@@ -1,3 +1,4 @@
+@import '../mixins.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .jobGuideDiv__head {
@@ -24,7 +25,15 @@
     display: grid;
     grid-template-columns: 1fr 2.8fr;
     gap: 1rem;
-
+    
+    @include lg{
+        // grid-template-columns: 1fr 1fr;
+        
+          
+      }
+    @include sm{
+        grid-template-columns: 1fr ;
+    }
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-style: normal;
@@ -89,6 +98,10 @@
     }
 
     .jobGuideDiv__content {
+        max-width: 100%;
+        iframe{
+            width: 100%;
+        }
         
         span{
             display: block;

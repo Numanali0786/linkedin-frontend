@@ -111,9 +111,20 @@ const tabs = [
 
   useEffect(() => {
     // console.log(profile)
+   
 
     if (profile) {
-      if (!socket?.connected) {
+      
+        window.onload = function () {
+          if (!window.location.hash) {
+            window.location = window.location + "#loaded";
+            // window.location.reload();
+          }
+        };
+  
+        window.onload();
+
+      if (!socket) {
         console.log('connecting socket')
         connectSocket(profile._id)
         // console.log("socket off",socket,profile?._id)
@@ -279,7 +290,7 @@ const tabs = [
           </li>
           <li className='dots'>
             <TbGridDots />
-            <HiDotsHorizontal />
+            {/* <HiDotsHorizontal /> */}
             <span>For Business</span>
           </li>
           {user && <li className='logout'>

@@ -1,3 +1,5 @@
+
+@import '../mixins.scss';
 .notif__div {
     display: grid;
     max-width: 1200px;
@@ -7,7 +9,22 @@
     padding: 0 30px;
     grid-template-columns: .6fr 2fr 1fr;
     gap: 1rem;
-    font-size: 14px;
+    font-size: 13px;
+    @include lg{
+        grid-template-columns: .7fr 1.8fr;
+       
+    }
+    @include md{
+        display: flex;
+        flex-direction: column;
+        padding:0 5rem;
+        
+    }
+    @include sm{
+
+        padding:0 2rem;
+        
+    }
 
     .left {
         background-color: white;
@@ -141,7 +158,7 @@
 
         .extras{
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 4rem;
             span{
                 // font-weight: 100;
                 margin-right: 1rem;

@@ -1,12 +1,14 @@
-.eventModal__div {
+.resumeModal__div {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgb(0 0 0/.6);
-    display: grid;
-    place-content: center;
+    display: flex;
+    justify-content: center;
+    padding-top: 4rem;
+    
     z-index: 10;
 
     .modal__center {
@@ -14,10 +16,15 @@
         position: relative;
         width: 85vw;
         max-width: 750px;
-        height: 89vh;
+        height: 60vh;
         background-color: white;
 
         .modal__content {
+            button{
+                border: none;
+                background-color: #e3e7ec;
+                cursor: pointer;
+            }
 
             display: flex;
             flex-direction: column;
@@ -61,7 +68,11 @@
                 input{
                     margin-top: 6px;
                 }
-
+                p{
+                    background-color: #dde7f1;
+                    margin:10px  -1rem 0;
+                    padding: 1rem;
+                }
 
                 .text {
                     // background-color: rgb(250, 248, 248);
@@ -107,7 +118,20 @@
                     padding: 6px 12px;
                     cursor: pointer;
                     position: relative;
-                    margin-top: 10px;
+                    margin-top: 3rem;
+
+                    .resumeUpload{
+                        color: #064a8e;
+                        position: absolute;
+                        top: 20%;
+                        margin-left: 2rem;
+                    
+                        text-align: center;
+                        width: 80%;
+                        padding: 10px;
+                        font-weight: bold;
+                        border:2px solid #064a8e;
+                    }
 
 
                     img {
@@ -128,15 +152,21 @@
                 }
 
                 input[type="file" i] {
-                    opacity: 0;
+
+                    text-align: center;
+                    opacity: 10;
                     cursor: pointer;
                     position: relative;
                     top: 0;
                     left: 0;
                     z-index: 20;
                     width: 100%;
-                    min-height: 350px;
-                    background-color: #0a66c2;
+                    min-height: 100px;
+                    display: grid;
+                    place-items: center;
+                    padding-top: 4rem;
+                    padding-left: 33%;
+                    // background-color: #0a66c2;
                     // height: 25px;
 
 
@@ -166,7 +196,10 @@
                     cursor: pointer;
                     position: absolute;
                     bottom: 10px;
+                    right: 2rem;
+                    border-radius: 10rem;
 
+                    // margin: auto;
                     &:hover {
 
                         background-color: #064a8e;
@@ -182,6 +215,8 @@
                     border: none;
                     color: rgb(141, 139, 139);
                     font-weight: bold;
+                    right: 2rem;
+                    border-radius: 10rem;
 
 
                 }

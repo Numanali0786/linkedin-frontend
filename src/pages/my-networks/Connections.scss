@@ -1,99 +1,119 @@
-.connectionWrapper{
+@import '../../mixins.scss';
+
+.connectionWrapper {
     display: grid;
     grid-template-columns: 3fr 1fr;
     gap: 1rem;
-.connectionsDiv {
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: .8rem;
-    padding: 10px 1rem;
-    // margin-top: 1rem;
 
-    .header {
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid rgb(236, 232, 232);
-        padding: 6px 1rem 1rem 1rem;
-        margin: 0 -1rem;
+    @include lg {
+        grid-template-columns: 1fr;
 
     }
 
-    .connections {
-        
-        .connection{
+    @include md {
+        display: flex;
+        flex-direction: column;
+        padding: 0 5rem;
+
+    }
+
+    @include sm {
+
+        padding: 0 2rem;
+
+    }
+
+    .connectionsDiv {
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: .8rem;
+        padding: 10px 1rem;
+        // margin-top: 1rem;
+
+        .header {
             display: flex;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgb(236, 232, 232);
-            align-items: center;
-            margin: 1rem 0;
             justify-content: space-between;
-
-            .connection__left {
-                display: flex;
-                gap: 1rem;
-                align-items: center;
-
-                img {
-                    width: 72px;
-                    height: 72px;
-                    border-radius: 50%;
-                }
-
-                p {
-                    span {
-                        margin: 5px 0;
-
-                    }
-
-                    span:nth-child(2) {
-                        display: block;
-                        color: rgb(0 0 0/.6);
-                        font-size: .9rem;
-
-                    }
-
-
-                }
-            }
-
-            .connection__right {
-                display: flex;
-                gap: 1rem;
-                .icon__button{
-                    cursor: pointer;
-                    
-                    background-color: transparent;
-                    border: transparent;
-
-                }
-                button:nth-child(2) {
-        
-
-                }
-
-                button:nth-child(1) {
-                    border: 1px solid #0a66c2;
-                    cursor: pointer;
-                    letter-spacing: 1px;
-                    color: #0a66c2;
-                    background: transparent;
-                    padding: 8px 1rem;
-                    border-radius: 10rem;
-                    font-weight: 600;
-                    font-size: 14px;
-
-                    &:hover {
-
-                        border: 2px solid #0a66c2;
-                        background-color: #e1e4e7;
-                        padding: 7px 15px;
-                    }
-
-                }
-            }
+            border-bottom: 1px solid rgb(236, 232, 232);
+            padding: 6px 1rem 1rem 1rem;
+            margin: 0 -1rem;
 
         }
+
+        .connections {
+
+            .connection {
+                display: flex;
+                padding-bottom: 1rem;
+                border-bottom: 1px solid rgb(236, 232, 232);
+                align-items: center;
+                margin: 1rem 0;
+                justify-content: space-between;
+
+                .connection__left {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+
+                    img {
+                        width: 72px;
+                        height: 72px;
+                        border-radius: 50%;
+                    }
+
+                    p {
+                        span {
+                            margin: 5px 0;
+
+                        }
+
+                        span:nth-child(2) {
+                            display: block;
+                            color: rgb(0 0 0/.6);
+                            font-size: .9rem;
+
+                        }
+
+
+                    }
+                }
+
+                .connection__right {
+                    display: flex;
+                    gap: 1rem;
+
+                    .icon__button {
+                        cursor: pointer;
+
+                        background-color: transparent;
+                        border: transparent;
+
+                    }
+
+                    button:nth-child(2) {}
+
+                    button:nth-child(1) {
+                        border: 1px solid #0a66c2;
+                        cursor: pointer;
+                        letter-spacing: 1px;
+                        color: #0a66c2;
+                        background: transparent;
+                        padding: 8px 1rem;
+                        border-radius: 10rem;
+                        font-weight: 600;
+                        font-size: 14px;
+
+                        &:hover {
+
+                            border: 2px solid #0a66c2;
+                            background-color: #e1e4e7;
+                            padding: 7px 15px;
+                        }
+
+                    }
+                }
+
+            }
+        }
     }
-}
 
 }

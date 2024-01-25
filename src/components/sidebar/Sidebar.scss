@@ -64,6 +64,7 @@
             margin: 2px -1rem;
             padding: 7px 1rem;
             font-size: 13px;
+          
 
             &:hover {
                 cursor: pointer;
@@ -103,12 +104,17 @@
         li {
             margin: 0 -1rem;
             padding: 3px 1rem;
+            // background-color: #0a66c2;
             &:hover {
                 cursor: pointer;
                 background-color: #ebebeb;
 
             }
+            // width: 100%;
             a {
+                // background-color: #0a66c2;
+                width: 100%;
+                display: block;
                 color: rgb(36, 36, 36);
                 margin: 1px -1rem;
                 padding: 4px 1rem;

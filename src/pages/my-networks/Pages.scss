@@ -1,3 +1,4 @@
+@import '../../mixins.scss';
 .mygroups__div {
     position: relative;
     display: grid;
@@ -9,6 +10,10 @@
     gap: 1.3rem;
     color: rgba(0, 0, 0, 0.85);
     font-size: 14px;
+    @include lg {
+        grid-template-columns: 1fr;
+
+    }
 
     .light {
         color: rgba(0, 0, 0, 0.6);

@@ -156,6 +156,10 @@
                 gap: 11px;
             }
             .img__li{
+                @include sm{
+                    border-right: none;
+                    padding-right: 1rem;
+                }
                 border-right: 1px solid rgba(133, 128, 128, 0.4);
                 padding-right: 2rem;
                 cursor: pointer;
@@ -202,13 +206,16 @@
             }
 
             .dots{
+                @include md{
+                    display: none;
+                }
+                @include lg{
+                    display: none;
+                }
                 svg{
                     cursor: pointer;
                     &:nth-child(1){
                         display: block;
-                        @include md{
-                            display: none;
-                        }
                     }
                     &:nth-child(2){
                         display: none;
@@ -223,8 +230,12 @@
                 font-size: 22px;
                 
             }
-
+            
             .logout{
+                @include sm{
+                    position: absolute;
+                    right: 0;
+                }
                 button{
                     background-color: transparent;
                     border: 1px solid rgb(11, 0, 0);

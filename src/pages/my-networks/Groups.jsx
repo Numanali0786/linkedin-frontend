@@ -98,7 +98,7 @@ const moreGroups = [
 const Groups = () => {
   const [selectedGroup, setSelectedGroup] = useState(yourGroups)
   return (
-    <div className='mygroups__div'>
+    <div className='mygroup__div'>
 
       <section className="mid">
         <div className="tops">

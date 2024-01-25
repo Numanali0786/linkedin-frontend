@@ -40,7 +40,7 @@ const Contacts = () => {
 
   return (
     <PageStyle>
-      <div className="contactsWrapper">
+      <div className="contactWrapper">
 
       <div className="contactsDiv">
         <p className='header'>Saved Contacts  </p>

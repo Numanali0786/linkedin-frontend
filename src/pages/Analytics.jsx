@@ -14,6 +14,11 @@ const Analytics = () => {
         <div className="contactsDiv">
           <p className='header'>Analytics & tools</p>
           <span>{format(new Date(), 'MMMM d, yyy')}</span>
+<br />
+<br />
+          <hr />
+          <br />
+          <h1>No current Analytics</h1>
         </div>
 
 
