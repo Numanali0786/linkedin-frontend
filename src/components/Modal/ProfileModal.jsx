@@ -300,7 +300,7 @@ const ProfileModal = () => {
                         </label>
 
                         <button type='button' className='close icon__button' onClick={() => profile && dispatch(profileModalOff())}><IoMdClose size={22} /></button>
-                        <button  disabled={!name && !profile.name } className={`${name || profile?.name?"post__btn":"disable__btn"}`} type='submit' onClick={handleSubmit(onSubmit)} >Save</button>
+                        <button  disabled={!name && !profile?.name } className={`${name || profile?.name?"post__btn":"disable__btn"}`} type='submit' onClick={handleSubmit(onSubmit)} >Save</button>
                     </form>
                 </div>
             </section>
