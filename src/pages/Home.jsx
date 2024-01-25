@@ -55,8 +55,8 @@ const Home = () => {
               <FaCalendarDays />
               <span>Event</span>
             </li>
-            <li>
-              <GrArticle size={23} onClick={() => dispatch(postModalOn())}/>
+            <li onClick={() => dispatch(postModalOn())}>
+              <GrArticle size={23} />
               <span>Write article</span>
             </li>
           </ul>
