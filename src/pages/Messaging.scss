@@ -1,4 +1,5 @@
 @import '../mixins.scss';
+
 .messagings_div {
     color: rgb(0 0 0/.9);
     max-width: 1200px;
@@ -12,53 +13,54 @@
     font-weight: 400;
     max-height: 100vh;
     overflow-y: clip;
+
     // background-color: aqua;
     @include lg {
         grid-template-columns: 1fr;
 
     }
-    
+
     .left {
         background-color: white;
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: .8rem;
         display: grid;
         grid-template-columns: 1fr 1.6fr;
-        
-        
+
+
         @include lg {
             grid-template-columns: 1fr 2fr;
-    
+
         }
 
 
         .conversaions__div {
-            
+
             border-right: 1px solid rgb(211, 209, 209);
-            
+
             .conv__headers {
                 border-bottom: 1px solid rgb(211, 209, 209);
                 height: 45px;
                 padding: 12px;
                 display: flex;
                 gap: 1rem;
-                
+
                 svg {
                     font-size: 21px;
                     color: rgb(108, 106, 106);
                 }
-                
+
                 span {
                     display: block;
                     flex: 1;
                 }
-                
+
             }
-            
+
             .conv__search {
                 padding: 6px;
                 border-bottom: 1px solid rgb(234, 233, 233);
-                
+
                 .search {
 
                     border: 2px solid rgb(230, 228, 228);
@@ -73,23 +75,23 @@
                     border-radius: 5px;
                     background-color: #edf3f8;
                     width: 95%;
-                    
+
                     // @include lg{
-                        //     display: none;
-                        // }
-                        
-                        
-                        
-                        input {
-                            outline: none;
-                            // width: 300px;
-                            width: 50%;
-                            border: none;
+                    //     display: none;
+                    // }
+
+
+
+                    input {
+                        outline: none;
+                        // width: 300px;
+                        width: 50%;
+                        border: none;
                         background-color: transparent;
-                        
-                        
+
+
                     }
-                    
+
                     .suggest__cont {
                         box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
                         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -98,7 +100,7 @@
                         top: 30px;
                         left: 0;
                         width: 100%;
-                        
+
                         .suggest {
                             padding: 10px;
                         }
@@ -110,7 +112,7 @@
             .conversations {
                 max-height: 76vh;
                 overflow-y: scroll;
-                
+
                 .conversation {
                     border-bottom: 1px solid rgb(234, 233, 233);
                     height: 92px;
@@ -128,21 +130,21 @@
                         border-radius: 50%;
 
                     }
-                    
+
                     &:hover {
                         cursor: pointer;
                         background-color: #edf3f8;
                     }
-                    
+
                     .content {
                         flex: 1;
-                        
+
                         .msg {
                             font-size: small;
                             color: rgb(89, 87, 87);
-                            
+
                         }
-                        
+
                     }
 
                     .time {
@@ -154,7 +156,7 @@
         }
 
         .chat__box {
-            
+
             // background-color: #064a8e;
             // max-height: 100vh;
             .chat__header {
@@ -164,7 +166,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                
+
                 svg {
                     font-size: 21px;
                     color: rgb(108, 106, 106);
@@ -210,11 +212,13 @@
                                 display: flex;
                                 gap: 5px;
                                 align-items: start;
-                                
-                                .chat__name {color: black;}
+
+                                .chat__name {
+                                    color: black;
+                                }
 
                                 .chat__img {
-                                    img{
+                                    img {
                                         width: 43px;
                                         border-radius: 50%;
 
@@ -223,15 +227,16 @@
 
                                 .chat__time {
                                     margin-top: 2px;
-                                    font-size: small;
-                            color: rgb(89, 87, 87);
+                                    font-size: 12px;
+                                    color: rgb(130, 125, 125);
                                 }
                             }
 
                             .chat__msg {
-                                color: rgb(0 0 0/.8);
+                                color: rgb(0 0 0/.77);
                                 font-weight: 400;
                                 font-size: 14px;
+                                margin-left: 3.1rem;
                             }
                         }
 

@@ -10,10 +10,11 @@ import { BsGlobeAmericas } from 'react-icons/bs';
 import { FaRegThumbsUp } from "react-icons/fa6";
 import { fetchApi } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllPosts } from '../../context/postSlice';
+import { deletePost, fetchAllPosts } from '../../context/postSlice';
 import moment from 'moment';
 import Comments from '../comments/Comments';
 import TimeAgo from 'timeago-react';
+import { MdDelete } from "react-icons/md";
 
 
 const Posts = () => {
@@ -24,7 +25,7 @@ const Posts = () => {
     const {profiles}  = useSelector((state)=> state.profileSlice)
     const profile = profiles && profiles.find((profile)=> profile?.authorSub === user?.sub)
 
-    // console.log(posts)
+    console.log(posts,profile)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchAllPosts())
@@ -60,7 +61,7 @@ const Posts = () => {
                                 />
 
                             </div>
-                            <BsThreeDots size={23} />
+                           {profile?._id==post.author._id && <MdDelete className='icon__button' size={20} onClick={()=>dispatch(deletePost(post._id))}/>}
                            
 
                         </div>

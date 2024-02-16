@@ -30,6 +30,9 @@ const Messaging = () => {
   const [text, setText] = useState('')
   const [scrolledHeight, setScrolledHeight] = useState(msg_cont.current?.scrollHeight)
   const { conversations, current_conversation, current_messages } = useSelector((state) => state.ConversationSlice.direct_chat)
+  // const [textDate, setTextDate] = useState(current_messages?.[0])
+  // const [textDate, setTextDate] = useState(format(current_messages?.[0]?.created_at, 'MMM d'))
+  // console.log(textDate)
   // console.log(conversations, current_conversation)
 
   const { room_id, friends } = useSelector((state) => state.profileSlice)
@@ -150,8 +153,9 @@ useEffect(()=>{
                       <div className="chat__top">
                       <p className='chat__img'>{msg.outgoing ? <img src={profile?.selectedFile}/> :<img src={current_conversation.selectedFile}/>}</p>
                       <p className='chat__name'>{msg.outgoing ? profile.name : current_conversation.name}</p>
-                      <p className='chat__time'>{format(msg?.created_at, 'h:mm a')}</p>
-                      </div>
+                      <p className='chat__time'>| {" "}{format(msg?.created_at, 'h:mm a')} | {format(msg?.created_at, 'MMM d')}</p>
+                       {/* <p className='chat__time'>{format(msg?.created_at, 'MMM d')}</p> */}
+                  </div>
                       <p className='chat__msg'>{msg.message} </p>
                       {/* <span>{format(msg?.created_at, 'MMMM do yyyy, h:mm:ss a')}</span>  */}
 

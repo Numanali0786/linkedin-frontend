@@ -9,7 +9,18 @@
         padding: 5px 1rem;
         border-radius: 7px;
         border: 1px solid rgb(209, 200, 200);
-
+        position: relative;
+        
+        .home__profile__back{
+            background: linear-gradient(#96abc7,#bcac73);
+            min-height: 57px;
+            margin:-5px -1rem 0;
+            width: 100%;
+            border-radius: 7px 7px 0 0;
+            position: absolute;
+            top: 0;
+            left: 1rem;
+        }
         .position{
             text-align: center;
         }
@@ -20,14 +31,18 @@
             left: 0;
             top: 0;
             width: 100%;
+            padding: 5px;
+            
             // z-index: -1;
         }
-
+        
         .img2 {
+            padding: 2px;
+            background-color: white;
             // background-color: red;
             display: block;
-            width: 72px;
-            height: 72px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             position: relative;
             margin: auto;

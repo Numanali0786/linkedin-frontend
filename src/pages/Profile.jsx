@@ -9,6 +9,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import { FaCamera } from "react-icons/fa";
 import { LuPencil } from "react-icons/lu";
 import { PageStyle, BoxStyle } from '../components/PageStyle';
+import RightAid from '../components/RightAid';
 
 const Profile = () => {
     const profile= JSON.parse(localStorage.getItem('profile'))
@@ -77,11 +78,13 @@ const Profile = () => {
                     </div>
                 </BoxStyle>
 
-                <BoxStyle>
+                
                     <div className="profile__right">
+            <RightAid btn="follow" color="button__blue" text="User, grow your career by following ETS India"
+        url='https://media.licdn.com/dms/image/C4E0BAQHI9ATKrp3GJw/company-logo_100_100/0/1637345110214?e=1712793600&v=beta&t=P8J6LjrtaRTXHqDMmZBwv3lgsF_TE6-omRL_lLGpv18' />
 
                     </div>
-                </BoxStyle>
+                
                 <div className="profile__sections">
                     <BoxStyle>
                         <div className="">
@@ -111,6 +114,7 @@ const Profile = () => {
 
                 </div>
             </div>
+
         </PageStyle>
     )
 }

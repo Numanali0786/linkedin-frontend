@@ -238,13 +238,14 @@
                 }
                 button{
                     background-color: transparent;
-                    border: 1px solid rgb(11, 0, 0);
+                    border: 1px solid rgb(0 0 0/.5);
                     border-radius: 5px;
                     padding: 8px 1rem;
                     cursor: pointer;
+                    color: rgb(0 0 0/.6);;
                     &:hover{
-                        background-color: rgb(0, 0, 0);
-                        color: white;
+                        background-color:rgb(0 0 0/.1);
+                        // color: white;
                     }
                 }
             }

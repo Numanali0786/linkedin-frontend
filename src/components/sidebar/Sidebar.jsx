@@ -38,7 +38,9 @@ const Sidebar = () => {
         <section className='home__left__section'>
             <div className="home__prifile">
                 {/* <img className='img1' src="https://media.licdn.com/dms/image/D4D16AQGVj6QcjNUH8w/profile-displaybackgroundimage-shrink_350_1400/0/1683480035763?e=1705536000&v=beta&t=zZIHmXCo4-LPNXAFT-BsqcyFqRScQyyNrDBTt7WAlbA" alt="" /> */}
-
+                <div className="home__profile__back">
+                                        
+                </div>
                 <img className='img2' src={profile?.selectedFile || 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/2048px-Windows_10_Default_Profile_Picture.svg.png'} alt="" onClick={() => nav('/profile')} />
                 {/* <label htmlFor='pic'>
                             <div className="profileImg" id="pic">
@@ -81,7 +83,7 @@ const Sidebar = () => {
                     <Link to='/mynetwork/Events'>Events</Link>
                     <ul>
                         {myEvents.map((event) => (
-                            <Link key={event._id} to='/events'><MdEvent size={16} />{event.name}</Link>
+                            <Link key={event._id} to='/mynetwork/Events'><MdEvent size={16} />{event.name}</Link>
 
                         ))}
                     </ul>

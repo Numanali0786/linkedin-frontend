@@ -19,6 +19,7 @@ const Events = () => {
         dispatch(fetchAllEvents())
 
     }, [])
+    console.log(events,profile)
     return (
 
         <div className='events'>
@@ -33,8 +34,13 @@ const Events = () => {
                     <li key={event._id}>
                         <img src={event?.selectedFile} alt="" />
                         <div className="details">
-                            <p>{event?.name}</p>
-                            <p className='desc'>{event?.description}</p>
+                            <p>{event?.name} | Organizer</p>
+                            {/* <p className='desc'>{event?.type}</p> */}
+                            <p className='desc'>Date- {event?.start} - {event?.end}</p>
+                            {/* <p className='desc'>{event?.end}</p> */}
+                            <p className='desc'>By- {profile?.name}</p>
+                            {/* <hr /> */}
+                            <p className='desc'>About- {event?.description}</p>
                         </div>
                         <button onClick={() => dispatch(deleteEvent(event._id))}><RxCross1 size={17} /></button>
 

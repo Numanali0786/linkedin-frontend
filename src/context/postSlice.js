@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { fetchApi, postApi } from '../api'
+import { deleteApi, fetchApi, postApi } from '../api'
 
 export const fetchAllPosts = createAsyncThunk("fetchAllPosts", async () => {
   // console.log('jjj')
@@ -12,6 +12,13 @@ export const createPost = createAsyncThunk("createPost", async (newPost) => {
 
   const { data } = await postApi('/api/posts', newPost);
   // console.log(data)
+  return data
+});
+export const deletePost = createAsyncThunk("deletePost", async (id) => {
+  console.log('del')
+
+  const { data } = await deleteApi(`/api/posts/${id}`);
+  console.log(data)
   return data
 });
 
@@ -44,6 +51,11 @@ export const postSlice = createSlice({
       state.isLoading = false;
       // console.log(state.posts)
       state.posts = [action.payload,...state.posts];
+    })
+    builder.addCase(deletePost.fulfilled, (state, action) => {
+      state.isLoading = false;
+      // console.log(state.posts)
+      state.posts = [...state.posts.filter((p)=>p._id!= action.payload._id)];
     })
     builder.addCase(createPost.rejected, (state, action) => {
       state.isError = true;

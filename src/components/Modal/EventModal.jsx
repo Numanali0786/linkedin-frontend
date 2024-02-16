@@ -21,7 +21,7 @@ const EventModal = () => {
     // const profile = profiles?.find((profile)=> profile?.authorSub === user?.sub)
 
     // const [postData, setPostData] = useState({ postText: '', selectedFile: '',author:profile._id,author:user.name,profile: profile?.selectedFile,position:profile?.position })
-    const [eventData, setEventData] = useState({ name: '', description: '', selectedFile: '', author: profile?._id })
+    const [eventData, setEventData] = useState({ name: '', description: '', selectedFile: '', author: profile?._id, type: '', start: 'unset', end: 'unset' })
 
     const dispatch = useDispatch()
 
@@ -66,11 +66,28 @@ const EventModal = () => {
                         <br />
                         <label htmlFor="eventName">Event Name</label>
                         <input className='text' type="text" id='eventName' placeholder="" onChange={(e) => setEventData({ ...eventData, name: e.target.value })} />
+
+
+
+
+<br />
+                        {/* <label htmlFor="type">Type</label>
+                        <input className='text' type="text" id='type' placeholder="" onChange={(e) => setEventData({ ...eventData, type: e.target.value })} /> */}
+                        <label htmlFor="start">Start</label>
+                        <input className='text' type="date" id='start' placeholder="" onChange={(e) => setEventData({ ...eventData, start: e.target.value })} />
+                        <br />
+                        <label htmlFor="end">End</label>
+
+                        <input className='text' type="date" id='end' placeholder="" onChange={(e) => setEventData({ ...eventData, end: e.target.value })} />
+
+
+
+
                         <br />
                         <label htmlFor="desc">Description</label>
                         <textarea className='text' type="text" id='desc' placeholder="" onChange={(e) => setEventData({ ...eventData, description: e.target.value })} />
 
-                        <button type='button' className='close icon__button' onClick={() => dispatch(eventModalOff())}><IoMdClose  size={25}/></button>
+                        <button type='button' className='close icon__button' onClick={() => dispatch(eventModalOff())}><IoMdClose size={25} /></button>
                         <button disabled={!eventData.name} className={`${!eventData.name == "" ? "post__btn" : "disable__btn"}`} onClick={handleSubmit} >Post</button>
                     </form>
 
